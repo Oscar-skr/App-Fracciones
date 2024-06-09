@@ -1,0 +1,122 @@
+/* NavBar.css */
+
+.navbar-container {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100vh;
+  z-index: 1000; /* Asegura que el navbar esté por encima del contenido */
+
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0072bb;
+  padding: 0 1rem;
+  position: sticky; /* Cambia a sticky */
+  top: 0; /* Fija el navbar en la parte superior */
+  width: 100vw;
+}
+
+.navbar-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: white;
+}
+
+nav ul {
+  display: flex;
+  align-items: center;
+}
+
+nav ul li {
+  list-style: none;
+  text-align: center;
+}
+
+nav ul li a {
+  display: block;
+  text-decoration: none;
+  color: white;
+  padding: 0.5rem 1rem; /* Ajuste del padding para un hover más contenido */
+  margin: 0 0.25rem; /* Ajuste del margen para evitar grandes espacios entre los botones */
+  border-radius: 0.5rem;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+nav ul li a:hover {
+  background-color: #005fa3;
+}
+
+nav ul li a.active {
+  background-color: #3a3a3a;
+  color: #ffffff;
+}
+
+.navbarmenu {
+  display: none;
+  position: fixed;
+  top: 0.4rem;
+  right: 0.5vh;
+  flex-direction: column;
+  justify-content: space-around; /* Distribuye los spans uniformemente */
+  width: 2.25rem;
+  height: 1.5rem; /* Aumenta la altura para dar espacio suficiente a los spans */
+  z-index: 1500; /* Asegura que el menú desplegable esté por encima del contenido */
+  cursor: pointer;
+}
+
+.navbarmenu span {
+  height: 0.2rem; /* Ajusta la altura del span */
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 0.2rem;
+  margin-right: 5px;
+}
+
+@media (max-width: 1110px) {
+  .navbarmenu {
+    display: flex;
+    position: absolute;
+    margin-right: 1px;
+
+  }
+  nav {
+    flex-direction: column;
+    align-items: flex-start; /* Ajusta el alineamiento a la izquierda */
+    width: 100vw;
+   
+  }
+  .maincontent{
+    display: flex;
+
+   }
+
+  nav ul {
+    display: none;
+    flex-direction: column;
+    width: 100%; /* Ajusta el ancho al 100% para el menú móvil */
+    margin-bottom: 0.25rem;
+    z-index: 1200; /* Asegura que el menú móvil esté en la capa superior */
+    background-color: #0072bb; /* Asegura que el fondo del menú coincida con el navbar */
+    height: 100vh !important;
+  }
+
+  nav ul.open {
+    display: flex;
+    height: auto;
+  }
+
+  nav ul li {
+    width: 100vw;
+    text-align: center;
+  }
+
+  nav ul li a {
+    padding: 0.5rem 1rem; /* Ajusta el padding para el menú móvil */
+    margin: 0.2rem 0.5rem; /* Ajusta el margen para el menú móvil */
+  }
+}

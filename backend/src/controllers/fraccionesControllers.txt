@@ -1,0 +1,79 @@
+//Tipos
+//suma_igual_denominador o resta_igual_denominador
+//suma_distinto_denominador o  resta_distinto_denominador
+//multiplicacion
+//division
+//radicacion
+//ejercicios_combinados
+//ecuaciones
+
+const express = require('express');
+const router = express.Router();
+
+const generarFraccionesIgualDenominador = (cantidad, operacion) => {
+    const B = Math.floor(Math.random() * 9) + 2; // Denominador aleatorio entre 2 y 10
+    const arrayFracciones = [];
+
+    if (operacion === 'suma') {
+        // Generar fracciones para suma
+        for (let i = 0; i < cantidad; i++) {
+            const A = Math.floor(Math.random() * 20) + 1; // Numerador aleatorio entre 1 y 20
+            arrayFracciones.push({ numerador: A, denominador: B });
+        }
+
+        // Sumar fracciones con igual denominador
+        let sumaNumeradores = 0;
+        arrayFracciones.forEach(fraccion => {
+            sumaNumeradores += fraccion.numerador;
+        });
+        const resultado = { numerador: sumaNumeradores, denominador: B };
+        return { fracciones: arrayFracciones, resultado };
+    } else if (operacion === 'resta') {
+        // Generar fracciones para resta, asegurándose de que la resta no sea negativa
+        let A = Math.floor(Math.random() * 20) + 1; // Numerador inicial entre 1 y 20
+        arrayFracciones.push({ numerador: A, denominador: B });
+
+        for (let i = 1; i < cantidad; i++) {
+            const C = Math.floor(Math.random() * A); // Numerador aleatorio entre 0 y A-1 para asegurar que la resta no sea negativa
+            arrayFracciones.push({ numerador: C, denominador: B });
+            A -= C; // Actualizar A para la siguiente iteración
+        }
+
+        const resultado = { numerador: A, denominador: B };
+        return { fracciones: arrayFracciones, resultado };
+    }
+};
+
+// Función para generar la respuesta y verificar el resultado
+const generarFracciones = (req, res) => {
+    const { tipo, cantidad = 2, operacion } = req.query;
+
+    if (!['suma', 'resta'].includes(operacion)) {
+        return res.status(400).json({ error: 'Operación no válida. Debe ser "suma" o "resta".' });
+    }
+
+    let resultado = {};
+
+    switch (tipo) {
+        case 'suma_igual_denominador':
+            resultado = generarFraccionesIgualDenominador(parseInt(cantidad), operacion);
+            break;
+        default:
+            return res.status(400).json({ error: 'Tipo de operación no válido' });
+    }
+
+    res.status(200).json(resultado);
+};
+
+// Ruta para verificar el resultado
+const verificarResultado = (req, res) => {
+    const { numerador, denominador, resultadoNumerador, resultadoDenominador } = req.body;
+
+    const esCorrecto = (numerador == resultadoNumerador) && (denominador == resultadoDenominador);
+    
+    res.status(200).json({ correcto: esCorrecto });
+};
+
+
+
+module.exports = { generarFracciones, verificarResultado }

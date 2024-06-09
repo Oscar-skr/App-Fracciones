@@ -1,0 +1,5 @@
+El componente renderiza a otros:
+1) identificar a dos gráficos equivalentes.
+2) identificar a dos fracciones equivalentes por amplificación.
+3) identificar a dos fracciones equivalentes por simplificación.
+4) completar el numerador o denominador faltante.

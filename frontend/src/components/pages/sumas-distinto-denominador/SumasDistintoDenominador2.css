@@ -1,0 +1,84 @@
+
+
+.operacion {
+    width: 100% !important; /* Asegura que el contenedor de la operación ocupe el 100% del ancho */
+    display: flex !important;
+    justify-content: center !important;
+    margin-bottom: 20px !important;
+}
+
+.contenedor-pistas {
+  
+    overflow-x: auto !important; /* Activar deslizador horizontal */
+    white-space: nowrap !important;
+    margin-top: 0px !important;
+    width: 100% !important; /* Asegura que el contenedor de las pistas ocupe el 100% del ancho */
+    
+}
+
+.fila-equivalentes {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    margin-top: 10px !important;
+}
+
+.contenedorOperaciones {
+    display: flex !important;
+    align-items: center !important;
+    margin-bottom: 0px !important;
+    margin-top: 0px !important;
+    font-size: 12px !important; /* Ajustar el tamaño de la fuente para las operaciones */
+}
+
+.contenedorOperacionesOrder {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+
+}
+
+.fraccion {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    margin-right: 10px !important;
+}
+
+.fraccion-pistas {
+    font-size: 15px !important; /* Reducir el tamaño de la fuente */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around !important;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transición suave para el hover */
+    align-items: center !important;
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+
+}
+
+.fraccion-pistas:hover {
+    background-color: #f0f0f0 !important; /* Color de fondo suave al hacer hover */
+    transform: scale(1.05) !important; /* Escala suave al hacer hover */
+    color: rgb(26, 96, 226);
+}
+
+.fraccion-span {
+    margin: 0 5px !important;
+}
+
+.fraccion-signo {
+    margin: 0 5px !important;
+}
+
+.igual {
+    margin: 0 5px !important;
+}
+
+.contenedor-Botones {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 10px !important;
+    margin-top: 20px !important;
+    font-size: 14px !important; /* Ajustar el tamaño de la fuente para los botones */
+}

@@ -1,0 +1,80 @@
+.graficos-css {
+    width: 60%;
+    height: 80vh;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.operacion {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.fraccion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 5px;
+    font-size: 24px;
+}
+
+.fraccion-span {
+    margin: 0 5px;
+}
+
+.parentezco {
+    font-size: 24px;
+    margin: 0 5px;
+}
+
+.exponente {
+    font-size: 14px;
+    position: relative;
+    top: -20px;
+    left: -10px;
+}
+
+.resultado {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.introducir-datos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.inputFraccion {
+    width: 60px;
+    text-align: center;
+    margin: 5px 0;
+}
+
+.contenedor-Botones {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.numerador-con-exponente {
+    display: flex;
+    align-items: flex-start;
+}
+
+.exponente-pequeno {
+    font-size: 14px;
+    margin-left: 2px;
+    align-self: flex-start;
+}

@@ -1,0 +1,64 @@
+.div2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    height: 150px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 20px;
+
+  }
+
+.contenedorEquivalentes {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    height: 100px;
+    padding: 5px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    flex: 1; /* Permite que todos los divs internos ocupen el mismo espacio */
+    width: 10vw; /* Ajusta el ancho al 30% del viewport */
+    margin: 0 5px; /* Margen entre los divs */
+    box-sizing: border-box; /* Asegura que el padding y el border se incluyan en el ancho total */
+ 
+
+}
+
+.contenedorEquivalentes:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-color: #007bff;
+}
+
+.fraccion-equivalente {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 0px;
+    min-width: 50px;
+
+  }
+
+.fraccion-equivalente p {
+    margin: 0;
+    line-height: 1;
+    font-size: 25px;
+}
+
+.fraccion-span {
+    display: block;
+    width: 50%;
+    height: 2px;
+    background-color: #333;
+    margin: 5px 0;
+}
+

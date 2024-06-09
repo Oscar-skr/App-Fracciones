@@ -1,0 +1,18 @@
+.contenedorOperaciones{
+    align-items: center;
+}
+
+.fraccion-sid{
+    border: 1px solid red;
+}
+
+.operacionsid {
+    width: 100% !important; /* Asegura que el contenedor de la operación ocupe el 100% del ancho */
+    display: flex !important;
+    justify-content: center !important;
+    margin-bottom: 20px !important;
+}
+
+@media (max-width: 1100px) {
+ 
+}
