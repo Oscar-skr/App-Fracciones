@@ -11,6 +11,7 @@ const Equivalentes4 = () => {
     const [playSoundWrong] = useSound(audioWrong);
     const [fracciones, setFracciones] = useState([]);
     const [opciones, setOpciones] = useState([]);
+    const [loading, setLoading] = useState(true); // Estado para indicar si está cargando
 
     const dispatch = useDispatch();
     const sonido = useSelector(state => state.sound.sonido);
@@ -18,6 +19,7 @@ const Equivalentes4 = () => {
     // Función para generar números de fracción
     const generarNumerosFraccion = async () => {
         try {
+            setLoading(true); // Iniciar carga
             const response = await fetch('https://fractionsapp-3.onrender.com/graficos/generarFraccion?cantidad=4');
             const data = await response.json();
             setFracciones(data);
@@ -25,8 +27,10 @@ const Equivalentes4 = () => {
             const opcionesBarajadas = shuffleArray(data.filter(f => f.id !== 4));
             setOpciones(opcionesBarajadas);
             console.log('Opciones barajadas:', opcionesBarajadas);
+            setLoading(false); // Terminar carga
         } catch (error) {
             console.error('Error al generar la fracción:', error);
+            setLoading(false); // Terminar carga incluso si hay un error
         }
     };
 
@@ -65,31 +69,37 @@ const Equivalentes4 = () => {
 
     return (
         <div className='div-renderizador'>
-            <h2>Simplificación</h2>
-            <h3>Elegí la fracción equivalente</h3>
-            <h3>a</h3>
-            {fraccionObjetivo && (
-                <div className="fraccion-equivalente">
-                    <p>{fraccionObjetivo.numerador}</p>
-                    <p className="fraccion-span"></p>
-                    <p>{fraccionObjetivo.denominador}</p>
-                </div>
-            )}
-            <div className="div2">
-                {opciones.map((fraccion, index) => (
-                    <div className='contenedorEquivalentes' key={index}  onClick={() => handleClick(fraccion.id === 1)}>
-                        <div className='fraccion-equivalente'>
-                            <p>{fraccion.numerador}</p>
+            {loading ? (
+                <div className='loading-container'><p>Cargando...</p></div>
+            ) : (
+                <>
+                    <h2>Simplificación</h2>
+                    <h3>Elegí la fracción equivalente</h3>
+                    <h3>a</h3>
+                    {fraccionObjetivo && (
+                        <div className="fraccion-equivalente">
+                            <p>{fraccionObjetivo.numerador}</p>
                             <p className="fraccion-span"></p>
-                            <p>{fraccion.denominador}</p>
+                            <p>{fraccionObjetivo.denominador}</p>
                         </div>
+                    )}
+                    <div className="div2">
+                        {opciones.map((fraccion, index) => (
+                            <div className='contenedorEquivalentes' key={index} onClick={() => handleClick(fraccion.id === 1)}>
+                                <div className='fraccion-equivalente'>
+                                    <p>{fraccion.numerador}</p>
+                                    <p className="fraccion-span"></p>
+                                    <p>{fraccion.denominador}</p>
+                                </div>
+                            </div>
+                        ))}
                     </div>
-                ))}
-            </div>
-            <div>
-                <button onClick={handleSonido} className='boton-app'>{sonido ? 'Sonido on' : 'Sonido off'}</button>
-                <button onClick={generarNumerosFraccion} className='boton-app'>Generar otra</button>
-            </div>
+                    <div>
+                        <button onClick={handleSonido} className='boton-app'>{sonido ? 'Sonido on' : 'Sonido off'}</button>
+                        <button onClick={generarNumerosFraccion} className='boton-app'>Generar otra</button>
+                    </div>
+                </>
+            )}
         </div>
     );
 };

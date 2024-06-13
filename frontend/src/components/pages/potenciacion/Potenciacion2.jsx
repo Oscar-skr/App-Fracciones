@@ -15,21 +15,25 @@ const Potenciacion2 = () => {
     const [resultado, setResultado] = useState(null);
     const [inputNumerador, setInputNumerador] = useState('');
     const [inputDenominador, setInputDenominador] = useState('');
+    const [loading, setLoading] = useState(true); // Estado para indicar si está cargando
 
     const dispatch = useDispatch();
     const sonido = useSelector(state => state.sound.sonido);
 
     const generarPotenciacion = async () => {
         try {
+            setLoading(true); // Iniciar carga
             const response = await fetch(`https://fractionsapp-3.onrender.com/potenciacion/potenciacion`);
             const data = await response.json();
             setFraccion(data.fraccion);
             setExponente(data.exponente);
             setTipo(data.tipo);
             setResultado(data.resultado);
+            setLoading(false); // Terminar carga
             console.log(data);
         } catch (error) {
             console.error('Error al generar las fracciones:', error);
+            setLoading(false); // Terminar carga incluso si hay un error
         }
     };
 
@@ -60,71 +64,73 @@ const Potenciacion2 = () => {
         }
     };
 
-    if (!fraccion || resultado === null) {
-        return <div>Cargando...</div>;
-    }
-
     return (
         <div>
             <div className='div-renderizador'>
-                <h2>Potenciación de Fracciones:</h2>
-                <div className="operacion">
-                    {tipo === 0 ? (
-                        <>
-                            <div className="parentezco">(</div>
-                            <div className="fraccion">
-                                <p>{fraccion.numerador}</p>
-                                <p className="fraccion-span"></p>
-                                <p>{fraccion.denominador}</p>
-                            </div>
-                            <div className="parentezco">)</div>
-                            <div className="exponente">{exponente}</div>
-                        </>
-                    ) : (
-                        <>
-                            <div className="fraccion">
-                                <div className="numerador-con-exponente">
-                                    <p>{fraccion.numerador}</p>
-                                    <sup className="exponente-pequeno">{exponente}</sup>
+                {loading ? (
+                    <div className='loading-container'><p>Cargando...</p></div>
+                ) : (
+                    <>
+                        <h2>Potenciación de Fracciones:</h2>
+                        <div className="operacion">
+                            {tipo === 0 ? (
+                                <>
+                                    <div className="parentezco">(</div>
+                                    <div className="fraccion">
+                                        <p>{fraccion.numerador}</p>
+                                        <p className="fraccion-span"></p>
+                                        <p>{fraccion.denominador}</p>
+                                    </div>
+                                    <div className="parentezco">)</div>
+                                    <div className="exponente">{exponente}</div>
+                                </>
+                            ) : (
+                                <>
+                                    <div className="fraccion">
+                                        <div className="numerador-con-exponente">
+                                            <p>{fraccion.numerador}</p>
+                                            <sup className="exponente-pequeno">{exponente}</sup>
+                                        </div>
+                                        <p className="fraccion-span"></p>
+                                        <p>{fraccion.denominador}</p>
+                                    </div>
+                                </>
+                            )}
+                            <div className="resultado">
+                                <p>=</p>
+                                <div className="introducir-datos">
+                                    <div className="fraccion">
+                                        <input 
+                                            type="text" 
+                                            inputMode="numeric" 
+                                            name="inputNumeradorName" 
+                                            className='inputFraccion' 
+                                            autoComplete="off" 
+                                            value={inputNumerador}
+                                            onChange={(e) => setInputNumerador(e.target.value)}
+                                            placeholder="Numerador"
+                                        />
+                                        <span className="fraccion-span"></span>
+                                        <input 
+                                            type="text" 
+                                            inputMode="numeric" 
+                                            name="inputDenominadorName" 
+                                            autoComplete="off" 
+                                            value={inputDenominador}
+                                            onChange={(e) => setInputDenominador(e.target.value)}
+                                            placeholder="Denominador"
+                                        />
+                                    </div>
                                 </div>
-                                <p className="fraccion-span"></p>
-                                <p>{fraccion.denominador}</p>
-                            </div>
-                        </>
-                    )}
-                    <div className="resultado">
-                        <p>=</p>
-                        <div className="introducir-datos">
-                            <div className="fraccion">
-                                <input 
-                                    type="text" 
-                                    inputMode="numeric" 
-                                    name="inputNumeradorName" 
-                                    className='inputFraccion' 
-                                    autoComplete="off" 
-                                    value={inputNumerador}
-                                    onChange={(e) => setInputNumerador(e.target.value)}
-                                    placeholder="Numerador"
-                                />
-                                <span className="fraccion-span"></span>
-                                <input 
-                                    type="text" 
-                                    inputMode="numeric" 
-                                    name="inputDenominadorName" 
-                                    autoComplete="off" 
-                                    value={inputDenominador}
-                                    onChange={(e) => setInputDenominador(e.target.value)}
-                                    placeholder="Denominador"
-                                />
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div className='contenedor-Botones'>
-                    <button onClick={handleSonido} className='boton-app'>{sonido ? 'Sonido on' : 'Sonido off'}</button>
-                    <button onClick={handleCheck} className='boton-app'>Chequear</button>
-                    <button onClick={generarPotenciacion} className='boton-app'>Generar otra</button>
-                </div>
+                        <div className='contenedor-Botones'>
+                            <button onClick={handleSonido} className='boton-app'>{sonido ? 'Sonido on' : 'Sonido off'}</button>
+                            <button onClick={handleCheck} className='boton-app'>Chequear</button>
+                            <button onClick={generarPotenciacion} className='boton-app'>Generar otra</button>
+                        </div>
+                    </>
+                )}
             </div>
         </div>
     );

@@ -70,7 +70,7 @@ const Graficos2 = () => {
     }, [fracciones]);
 
     if (divs.length === 0 || variable1 === null || variable2 === null || variable3 === null) {
-        return <div>Cargando...</div>;
+        return <div className="loading-container"><p>Cargando...</p></div>;
     }
 
     const DivClickeable = (props) => {

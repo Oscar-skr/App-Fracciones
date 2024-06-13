@@ -57,7 +57,7 @@ const Equivalentes3 = () => {
     };
 
     if (fracciones.length === 0) {
-        return <div>Cargando...</div>;
+        return <div className='loading-container'><p>Cargando...</p></div>;
     }
 
     const fraccionObjetivo = fracciones.find(f => f.id === 1);

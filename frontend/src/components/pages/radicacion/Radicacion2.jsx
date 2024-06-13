@@ -59,7 +59,7 @@ const Radicacion2 = () => {
     };
 
     if (!fraccion || resultado === null) {
-        return <div>Cargando...</div>;
+        return <div className='loading-container'><p>Cargando...</p></div>;
     }
 
     return (

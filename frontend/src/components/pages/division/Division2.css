@@ -1,0 +1,7 @@
+.fraccion-span{
+    width: 70% !important;
+    height: 1px;
+    background-color: #060000;
+    border: 1px solid black;
+    margin: 5px 0;
+}

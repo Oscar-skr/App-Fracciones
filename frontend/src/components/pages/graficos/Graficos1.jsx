@@ -12,6 +12,7 @@ const Graficos1 = () => {
   const [divs, setDivs] = useState([]);
   const [inputNumerador, setInputNumerador] = useState("");
   const [inputDenominador, setInputDenominador] = useState("");
+  const [loading, setLoading] = useState(true); // Estado para indicar si está cargando
   const [playSoundOk] = useSound(audioOk);
   const [playSoundWrong] = useSound(audioWrong);
 
@@ -20,13 +21,15 @@ const Graficos1 = () => {
 
   const generarNumerosFraccion = async () => {
     try {
+      setLoading(true); // Iniciar carga
       const response = await fetch('https://fractionsapp-3.onrender.com/graficos/generarFraccion?cantidad=1');
       const data = await response.json();
       setNumerador(data.numerador);
       setDenominador(data.denominador);
-      
+      setLoading(false); // Terminar carga
     } catch (error) {
       console.error('Error al generar la fracción:', error);
+      setLoading(false); // Terminar carga incluso si hay un error
     }
   };
 
@@ -77,19 +80,27 @@ const Graficos1 = () => {
 
   return (
     <div className="div-renderizador">
-      <h3>Introducí el numerador y el denominador:</h3>
-      <div className="graficoFraccion">{divs}</div>
-      <span></span>
-      <div className="introducir-datos">
-        <div className="fracciong">
-          <input type="text" inputMode="numeric" name="inputNumeradorName" className='inputFraccion' autoComplete="off" value={inputNumerador} onChange={handleOnChange} placeholder="Numerador"/>
-          <span className="fraccion-span"></span>
-          <input type="text" inputMode="numeric" name="inputDenominadorName" autoComplete="off" value={inputDenominador} onChange={handleOnChange} placeholder="Denominador"/>
+      {loading ? (
+        <div className="loading-container">
+          <p>Cargando...</p>
         </div>
-        <button onClick={chequearDatos} className="boton-app">Chequear</button>
-        <button onClick={handleSonido} className="boton-app">{sonido ? 'Sonido on' : 'Sonido off'}</button>
-        <button onClick={generarNumerosFraccion} className="boton-app">Generar otra</button>
-      </div>
+      ) : (
+        <>
+          <h3>Introducí el numerador y el denominador:</h3>
+          <div className="graficoFraccion">{divs}</div>
+          <span></span>
+          <div className="introducir-datos">
+            <div className="fracciong">
+              <input type="text" inputMode="numeric" name="inputNumeradorName" className='inputFraccion' autoComplete="off" value={inputNumerador} onChange={handleOnChange} placeholder="Numerador"/>
+              <span className="fraccion-span"></span>
+              <input type="text" inputMode="numeric" name="inputDenominadorName" autoComplete="off" value={inputDenominador} onChange={handleOnChange} placeholder="Denominador"/>
+            </div>
+            <button onClick={chequearDatos} className="boton-app">Chequear</button>
+            <button onClick={handleSonido} className="boton-app">{sonido ? 'Sonido on' : 'Sonido off'}</button>
+            <button onClick={generarNumerosFraccion} className="boton-app">Generar otra</button>
+          </div>
+        </>
+      )}
     </div>
   );
 };

@@ -39,7 +39,7 @@ const SumasDistintoDenominador2 = () => {
     }, []);
 
     if (fracciones.length === 0 || resultado === null) {
-        return <div>Cargando...</div>;
+        return <div className='loading-container'><p>Cargando...</p></div>;
     }
 
     const handleSonido = () => {

@@ -76,7 +76,7 @@ const Equivalentes2 = () => {
     };
 
     if (divs.length === 0) {
-        return <div>Cargando...</div>;
+        return <div className='loading-container'><p>Cargando...</p></div>;
     }
 
     return (
