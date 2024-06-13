@@ -12,7 +12,7 @@ const Equivalente5 = () => {
     const [fracciones, setFracciones] = useState([]);
     const [opciones, setOpciones] = useState([]);
     const [tipoEjercicio, setTipoEjercicio] = useState('');
-    const [loading, setLoading] = useState(true); // Estado para indicar si está cargando
+    const [loading, setLoading] = useState(true);
 
     const dispatch = useDispatch();
     const sonido = useSelector(state => state.sound.sonido);
@@ -22,16 +22,18 @@ const Equivalente5 = () => {
         setTipoEjercicio(tipo);
 
         try {
-            setLoading(true); // Iniciar carga
+            setLoading(true);
             const response = await fetch(`https://fractionsapp-3.onrender.com/graficos/${tipo}?cantidad=4`);
             const data = await response.json();
             setFracciones(data);
-            const opcionesBarajadas = shuffleArray(data.filter(f => (tipo === 'equivalentes' ? f.id !== 1 : f.id !== 4)));
-            setOpciones(opcionesBarajadas);
-            setLoading(false); // Terminar carga
+            const opcionesBarajadas = shuffleArray(data.filter(f => f.id !== (tipo === 'equivalentes' ? 4 : 1)));
+            setOpciones(opcionesBarajadas.slice(0, 3)); // Solo las primeras tres opciones
+            console.log("Verificando fracciones:");
+            console.log(opcionesBarajadas);
+            setLoading(false);
         } catch (error) {
             console.error('Error al generar la fracción:', error);
-            setLoading(false); // Terminar carga incluso si hay un error
+            setLoading(false);
         }
     }, []);
 
@@ -39,8 +41,9 @@ const Equivalente5 = () => {
         generarNumerosFraccion();
     }, [generarNumerosFraccion]);
 
-    // Fracción objetivo es siempre la fracción con id = 1 para 'equivalentes' y id = 4 para 'generarFraccion'
-    const fraccionObjetivo = fracciones.find(f => (tipoEjercicio === 'equivalentes' ? f.id === 1 : f.id === 4));
+    const fraccionObjetivo = fracciones.find(f => (tipoEjercicio === 'equivalentes' ? f.id === 4 : f.id === 1));
+    console.log("Buscando la fracción objetivo:");
+    console.log(fraccionObjetivo);
 
     const shuffleArray = (array) => {
         for (let i = array.length - 1; i > 0; i--) {
@@ -54,7 +57,10 @@ const Equivalente5 = () => {
         dispatch(toggleSound());
     };
 
-    const handleClick = (correcto) => {
+    const handleClick = (id) => {
+        console.log(`El id es ${id}`);
+
+        const correcto = (tipoEjercicio === 'equivalentes' && id === 1) || (tipoEjercicio === 'generarFraccion' && id === 4);
         if (correcto) {
             if (sonido) {
                 playSoundOk();
@@ -85,7 +91,7 @@ const Equivalente5 = () => {
                     )}
                     <div className="div2">
                         {opciones.map((fraccion, index) => (
-                            <div className='contenedorEquivalentes' key={index} onClick={() => handleClick(tipoEjercicio === 'equivalentes' ? fraccion.id === 1 : fraccion.id === 4)}>
+                            <div className='contenedorEquivalentes' key={index} onClick={() => handleClick(fraccion.id)}>
                                 <div className='fraccion-equivalente'>
                                     <p>{fraccion.numerador}</p>
                                     <p className="fraccion-span"></p>
