@@ -20,7 +20,7 @@ const Radicacion2 = () => {
 
     const generarRadicacion = async () => {
         try {
-            const response = await fetch(`http://localhost:3001/potenciacion/radicacion`);
+            const response = await fetch(`https://fractionsapp-3.onrender.com/potenciacion/radicacion`);
             const data = await response.json();
             setFraccion(data.fraccion);
             setIndice(data.indice);

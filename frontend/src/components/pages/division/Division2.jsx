@@ -24,7 +24,7 @@ const Division2 = () => {
 
     const generarDivisiones = async () => {
         try {
-            const response = await fetch(`http://localhost:3001/operaciones?tipo=division`);
+            const response = await fetch(`https://fractionsapp-3.onrender.com/operaciones?tipo=division`);
             const data = await response.json();
             setFracciones(data.fracciones);
             setResultado(data.resultado);

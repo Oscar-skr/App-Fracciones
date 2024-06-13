@@ -22,7 +22,7 @@ const SumasDistintoDenominador2 = () => {
 
     const generarNumerosFraccion = async () => {
         try {
-            const response = await fetch(`http://localhost:3001/fracciones/fdd`);
+            const response = await fetch(`https://fractionsapp-3.onrender.com/fracciones/fdd`);
             const data = await response.json();
             setFracciones(data.fraccionesOriginales);
             setResultado(data.resultadoDecimal);

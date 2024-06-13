@@ -25,7 +25,7 @@ const Multiplicacion2 = () => {
 
     const generarMultiplicaciones = async () => {
         try {
-            const response = await fetch(`http://localhost:3001/operaciones?tipo=multiplicacion`);
+            const response = await fetch(`https://fractionsapp-3.onrender.com/operaciones?tipo=multiplicacion`);
             const data = await response.json();
             setFracciones(data.fracciones);
             setResultado(data.resultado);

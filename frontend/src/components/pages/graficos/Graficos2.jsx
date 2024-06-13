@@ -20,7 +20,7 @@ const Graficos2 = () => {
 
     const generarNumerosFraccion = async () => {
         try {
-            const response = await fetch('http://localhost:3001/graficos/generarFraccion?cantidad=3');
+            const response = await fetch('https://fractionsapp-3.onrender.com/graficos/generarFraccion?cantidad=3');
             const data = await response.json();
             setFracciones(data);
             console.log(data);

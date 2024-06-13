@@ -17,7 +17,7 @@ const Equivalentes3 = () => {
 
     const generarNumerosFraccion = async () => {
         try {
-            const response = await fetch('http://localhost:3001/graficos/equivalentes?cantidad=4');
+            const response = await fetch('https://fractionsapp-3.onrender.com/graficos/equivalentes?cantidad=4');
             const data = await response.json();
             setFracciones(data);
             setOpciones(shuffleArray(data.filter(f => f.id !== 1)));

@@ -21,7 +21,7 @@ const Potenciacion2 = () => {
 
     const generarPotenciacion = async () => {
         try {
-            const response = await fetch(`http://localhost:3001/potenciacion/potenciacion`);
+            const response = await fetch(`https://fractionsapp-3.onrender.com/potenciacion/potenciacion`);
             const data = await response.json();
             setFraccion(data.fraccion);
             setExponente(data.exponente);

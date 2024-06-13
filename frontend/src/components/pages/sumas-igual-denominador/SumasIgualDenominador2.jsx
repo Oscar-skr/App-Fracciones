@@ -20,7 +20,7 @@ const SumasIgualDenominador2 = () => {
 
     const generarNumerosFraccion = async () => {
         try {
-            const response = await fetch(`http://localhost:3001/fracciones`);
+            const response = await fetch(`https://fractionsapp-3.onrender.com/fracciones`);
             const data = await response.json();
             const fraccionesData = data.filter(item => item.numerador !== undefined && item.denominador !== undefined);
             const resultadoData = data.find(item => item.resultado !== undefined)?.resultado;

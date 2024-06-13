@@ -21,7 +21,7 @@ const Equivalente5 = () => {
         setTipoEjercicio(tipo);
 
         try {
-            const response = await fetch(`http://localhost:3001/graficos/${tipo}?cantidad=4`);
+            const response = await fetch(`https://fractionsapp-3.onrender.com/graficos/${tipo}?cantidad=4`);
             const data = await response.json();
             setFracciones(data);
             const opcionesBarajadas = shuffleArray(data.filter(f => (tipo === 'equivalentes' ? f.id !== 1 : f.id !== 4)));
