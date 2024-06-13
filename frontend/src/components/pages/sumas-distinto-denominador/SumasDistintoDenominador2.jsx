@@ -88,7 +88,7 @@ const SumasDistintoDenominador2 = () => {
                <div className="operacion div1 div2">
                     {fracciones.map((fraccion, index) => (
                         <div className="contenedorOperaciones" key={index}>
-                            <div className="fraccion">
+                            <div className="fraccion-sid">
                                 <p>{fraccion.numerador}</p>
                                 <p className="fraccion-span"></p>
                                 <p>{fraccion.denominador}</p>
@@ -138,7 +138,7 @@ const SumasDistintoDenominador2 = () => {
                                     <p className="fraccion-span"></p>
                                     <p>{equivalente.denominador}</p>
                                     </div>
-                                    <div>{i < fila.length - 1 && <span className="fraccion-signo">=</span>}</div>
+                                    <div>{i < fila.length - 1 && <span className="fraccion-signo-dd">=</span>}</div>
                                 
                                 </div>
                             ))}

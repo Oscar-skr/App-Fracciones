@@ -1,0 +1,19 @@
+
+.imagen-division {
+    width: 60vw;
+    height: auto;
+    border: none;
+    margin: 0;
+    padding: 0;
+    display: block;
+}
+
+.desktop-picture {
+    display: block;
+}
+
+.mobile-picture {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}

@@ -2,17 +2,77 @@
     align-items: center;
 }
 
-.fraccion-sid{
-    border: 1px solid red;
-}
 
 .operacionsid {
-    width: 100% !important; /* Asegura que el contenedor de la operación ocupe el 100% del ancho */
-    display: flex !important;
-    justify-content: center !important;
-    margin-bottom: 20px !important;
+    width: 100%; /* Asegura que el contenedor de la operación ocupe el 100% del ancho */
+    font-size: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}
+.fraccion-signo{
+    font-size: 30px;
+}
+.resultado p{
+    margin-right: 10px;
+
 }
 
+.fraccion-span{
+    width: 30px;
+}
+.fraccion-sid{
+    font-size: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.fraccion-sid p{
+    margin-bottom: 0px;
+    justify-content: center;
+}
+
+.resultado p{
+    margin-bottom: 0px;
+    justify-content: center;
+}
+
+
 @media (max-width: 1100px) {
- 
+    .fraccion input {
+        width: 100%;
+        max-width: 50px;
+        min-width: 50px;
+        font-size: 16px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        text-align: center;
+        margin: 5px 0;
+        box-sizing: border-box;
+        margin-right: 15px;
+    }
+    
+    .contenedorOperaciones{
+        font-size: 13px;
+        justify-content: center;
+     }
+
+     .operacionsid{
+        justify-content: baseline;
+
+     }
+
+     .resultado{
+        max-width: 60px;
+    
+    }
+    .fraccion-sid{
+        font-size: 25px;
+    }
+    .fraccion-span{
+        width: 25px;
+    }
 }

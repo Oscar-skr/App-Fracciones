@@ -25,7 +25,6 @@
   border-radius: 4px;
   overflow: hidden;
   margin-bottom: 20px;
-
 }
 
 .div-num, .div-vacio {
@@ -63,6 +62,17 @@
   height: 2px; /* Línea más gruesa para una mejor separación */
   background-color: #333; /* Color de la línea */
   margin: 5px 0; /* Espacio alrededor de la línea */
+}
+
+/* Estilo para las fracciones seleccionadas */
+.graficoFraccion.selected {
+  border: 2px solid #4CAF50; /* Verde */
+  box-shadow: 0 0 10px rgba(76, 175, 80, 0.5); /* Sombra verde */
+}
+
+/* Efecto de hover para las fracciones */
+.graficoFraccion {
+  transition: background-color 0.3s ease, border 0.3s ease, box-shadow 0.3s ease;
 }
 
 @media (max-width: 1100px) {

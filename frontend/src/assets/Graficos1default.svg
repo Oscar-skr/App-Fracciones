@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 26.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 1280 800" style="enable-background:new 0 0 1280 800;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;}
+	.st1{fill:#376EB5;}
+	.st2{font-family:'Roboto-Regular';}
+	.st3{font-size:102.637px;}
+	.st4{fill:#376EB5;stroke:#376EB5;stroke-width:3;stroke-miterlimit:10;}
+	.st5{fill:none;stroke:#376EB5;stroke-width:3;stroke-miterlimit:10;}
+	.st6{font-size:92.14px;}
+	.st7{fill:#376EB5;stroke:#1D1E1B;stroke-width:0.25;stroke-miterlimit:10;}
+	.st8{fill:#FFFFFF;stroke:#1D1E1B;stroke-width:0.25;stroke-miterlimit:10;}
+	.st9{font-size:75.4577px;}
+</style>
+<rect x="210.3" y="72.8" class="st0" width="63" height="87.5"/>
+<text transform="matrix(1 0 0 1 210.327 149.8253)" class="st1 st2 st3">3</text>
+<rect x="210.3" y="170.5" class="st0" width="63" height="87.5"/>
+<text transform="matrix(1 0 0 1 210.327 247.4659)" class="st1 st2 st3">5</text>
+<line class="st4" x1="190.5" y1="160.3" x2="285" y2="160.3"/>
+<g>
+	<g>
+		<line class="st5" x1="285" y1="116.6" x2="418.1" y2="116.6"/>
+		<g>
+			<path class="st1" d="M428.4,116.6c-4.9,1.8-10.9,4.9-14.6,8.1l2.9-8.1l-2.9-8.1C417.5,111.7,423.6,114.8,428.4,116.6z"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<line class="st5" x1="285" y1="214.2" x2="418.1" y2="214.2"/>
+		<g>
+			<path class="st1" d="M428.4,214.2c-4.9,1.8-10.9,4.9-14.6,8.1l2.9-8.1l-2.9-8.1C417.5,209.4,423.6,212.4,428.4,214.2z"/>
+		</g>
+	</g>
+</g>
+<rect x="452.9" y="85.7" class="st0" width="603" height="89.8"/>
+<text transform="matrix(1 0 0 1 452.9237 154.7818)" class="st2 st6">Numerador</text>
+<rect x="447.1" y="181.3" class="st0" width="694" height="98"/>
+<text transform="matrix(1 0 0 1 447.0926 250.4205)" class="st2 st6">Denominador</text>
+<rect x="191.4" y="503.3" class="st7" width="163.3" height="114.3"/>
+<rect x="354.6" y="503.3" class="st7" width="163.3" height="114.3"/>
+<rect x="517.9" y="503.3" class="st7" width="163.3" height="114.3"/>
+<rect x="681.2" y="503.3" class="st8" width="163.3" height="114.3"/>
+<rect x="844.5" y="503.3" class="st8" width="163.3" height="114.3"/>
+<rect x="454.7" y="630.3" class="st0" width="558.1" height="111"/>
+<text transform="matrix(1 0 0 1 454.6952 686.8858)" class="st2 st9">5 partes en total</text>
+<rect x="194.3" y="426" class="st0" width="375.2" height="111"/>
+<text transform="matrix(1 0 0 1 194.2987 482.544)" class="st2 st9">3 pintadas</text>
+</svg>

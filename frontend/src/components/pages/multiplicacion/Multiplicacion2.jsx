@@ -17,6 +17,8 @@ const Multiplicacion2 = () => {
     const [selectedDen, setSelectedDen] = useState(null);
     const [divisoresVisibles, setDivisoresVisibles] = useState(false);
     const [highlightClass, setHighlightClass] = useState('');
+    const [correctClass, setCorrectClass] = useState('');
+    const [incorrectClass, setIncorrectClass] = useState('');
 
     const dispatch = useDispatch();
     const sonido = useSelector(state => state.sound.sonido);
@@ -53,6 +55,12 @@ const Multiplicacion2 = () => {
         }
     };
 
+    useEffect(() => {
+        if (selectedNum && selectedDen) {
+            setDivisoresVisibles(true);
+        }
+    }, [selectedNum, selectedDen]);
+
     const handleSimplificar = (divisor) => {
         const isSimplifiable = selectedNum && selectedDen &&
             (selectedNum.value % divisor === 0 && selectedDen.value % divisor === 0);
@@ -65,16 +73,16 @@ const Multiplicacion2 = () => {
             setSelectedNum(null);
             setSelectedDen(null);
             setDivisoresVisibles(false);
-            setHighlightClass('seleccionada-correcta');
-            setTimeout(() => setHighlightClass(''), 1000);
+            setCorrectClass('seleccionada-correcta');
+            setTimeout(() => setCorrectClass(''), 100); // Duración del color verde
         } else {
-            setHighlightClass('seleccionada-incorrecta');
+            setIncorrectClass('seleccionada-incorrecta');
             setTimeout(() => {
                 setSelectedNum(null);
                 setSelectedDen(null);
                 setDivisoresVisibles(false);
-                setHighlightClass('');
-            }, 1000);
+                setIncorrectClass('');
+            }, 100); // Duración del color rojo
         }
     };
 
@@ -106,7 +114,7 @@ const Multiplicacion2 = () => {
                         <div className="contenedorOperaciones" key={index}>
                             <div>
                                 <div 
-                                    className={`fraccion ${selectedNum?.index === index ? highlightClass : ''}`} 
+                                    className={`fraccion-sid ${selectedNum?.index === index ? highlightClass : ''} ${selectedNum?.index === index ? correctClass : ''} ${selectedNum?.index === index ? incorrectClass : ''}`} 
                                     onClick={() => handleFraccionClick('numerador', fraccion, index)}
                                     style={selectedNum?.index === index && selectedNum.value === fraccion.numerador ? { backgroundColor: 'lightblue' } : {}}
                                 >
@@ -114,7 +122,7 @@ const Multiplicacion2 = () => {
                                     <p className="fraccion-span"></p>
                                 </div>
                                 <div 
-                                    className={`fraccion ${selectedDen?.index === index ? highlightClass : ''}`} 
+                                    className={`fraccion-sid ${selectedDen?.index === index ? highlightClass : ''} ${selectedDen?.index === index ? correctClass : ''} ${selectedDen?.index === index ? incorrectClass : ''}`} 
                                     onClick={() => handleFraccionClick('denominador', fraccion, index)}
                                     style={selectedDen?.index === index && selectedDen.value === fraccion.denominador ? { backgroundColor: 'lightblue' } : {}}
                                 >
@@ -128,7 +136,7 @@ const Multiplicacion2 = () => {
                             </div>
                         </div>
                     ))}
-                    <div className="resultado">
+                   <div className="resultado">
                         <p>=</p>
                         <div className="introducir-datos">
                             <div className="fraccion">

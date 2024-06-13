@@ -81,7 +81,7 @@ const Graficos1 = () => {
       <div className="graficoFraccion">{divs}</div>
       <span></span>
       <div className="introducir-datos">
-        <div className="fraccion">
+        <div className="fracciong">
           <input type="text" inputMode="numeric" name="inputNumeradorName" className='inputFraccion' autoComplete="off" value={inputNumerador} onChange={handleOnChange} placeholder="Numerador"/>
           <span className="fraccion-span"></span>
           <input type="text" inputMode="numeric" name="inputDenominadorName" autoComplete="off" value={inputDenominador} onChange={handleOnChange} placeholder="Denominador"/>

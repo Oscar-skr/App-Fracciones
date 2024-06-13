@@ -13,7 +13,7 @@ const NavBar = () => {
   return (
     <div className={`navbar-container ${menuOpen ? 'menu-open' : ''}`}>
       <nav className='maincontent'>
-        <Link to="/" className="navbar-title">Website</Link>
+        <Link to="/" className="navbar-title">Mundo Fracciones</Link>
         <div className='navbarmenu' onClick={() => setMenuOpen(!menuOpen)}>
           <span></span>
           <span></span>

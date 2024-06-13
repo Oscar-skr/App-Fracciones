@@ -65,8 +65,9 @@ const Equivalentes3 = () => {
     return (
         <div className='div-renderizador'>
             <h2>Amplificación</h2>
-            <h3>Elegí la fracción equivalente a</h3>
-            <div className="fraccion">
+            <h3>Elegí la fracción equivalente</h3>
+            <h3>a</h3>
+            <div className="fraccion-equivalente">
                 <p>{fraccionObjetivo.numerador}</p>
                 <p className="fraccion-span"></p>
                 <p>{fraccionObjetivo.denominador}</p>

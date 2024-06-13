@@ -1,0 +1,30 @@
+
+
+.imagen-potenciacion {
+    width: 60vw;
+    max-width: 100%;  /* Asegura que la imagen no exceda el contenedor */
+    height: auto;
+    border: none;
+    margin: 0;
+    padding: 0;
+    display: block;
+}
+
+.desktop-picture {
+    display: block;
+}
+
+.mobile-picture {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+}
+
+@media (max-width: 650px) {
+    .desktop-picture {
+        display: none;
+    }
+    .mobile-picture {
+        display: flex;
+    }
+}

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 26.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 1280 800" style="enable-background:new 0 0 1280 800;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;}
+	.st1{font-family:'Roboto-Regular';}
+	.st2{font-size:46px;}
+	.st3{fill:#1D1D1B;}
+	.st4{font-size:85.3093px;}
+	.st5{fill:#1D1D1B;stroke:#1D1D1B;stroke-width:3;stroke-miterlimit:10;}
+	.st6{fill:none;stroke:#1D1D1B;stroke-width:3;stroke-miterlimit:10;}
+	.st7{font-size:61.5563px;}
+	.st8{font-size:51.3911px;}
+	.st9{fill:#007BFF;}
+	.st10{fill:none;stroke:#007BFF;stroke-width:3;stroke-miterlimit:10;}
+	.st11{font-size:37.0821px;}
+	.st12{font-size:38px;}
+	.st13{font-size:82.3954px;}
+	.st14{font-size:79.4872px;}
+</style>
+<rect x="34" y="66.1" class="st0" width="1150.9" height="170.6"/>
+<text transform="matrix(1 0 0 1 34.539 100.6242)"><tspan x="0" y="0" class="st1 st2">Para sumar o restar fracciones de distinto denominador, </tspan><tspan x="97.1" y="55.2" class="st1 st2">se buscan fracciones equivalentes hasta hallar </tspan><tspan x="221.7" y="110.4" class="st1 st2">fracciones con igual denominador:</tspan></text>
+<g>
+	<rect x="480.8" y="237.8" class="st0" width="52.4" height="72.7"/>
+	<text transform="matrix(1 0 0 1 480.7656 303.498)" class="st3 st1 st4">2</text>
+	<rect x="480.8" y="319" class="st0" width="52.4" height="72.7"/>
+	<text transform="matrix(1 0 0 1 484.6396 377.9668)" class="st1 st4">3</text>
+	<line class="st5" x1="464.3" y1="310.5" x2="542.9" y2="310.5"/>
+</g>
+<g>
+	<rect x="642" y="237.8" class="st0" width="52.4" height="72.7"/>
+	<text transform="matrix(1 0 0 1 642.043 301.7915)" class="st3 st1 st4">1</text>
+	<rect x="642" y="319" class="st0" width="52.4" height="72.7"/>
+	<text transform="matrix(1 0 0 1 647.542 384.3062)" class="st1 st4">2</text>
+	<line class="st6" x1="625.6" y1="310.5" x2="704.1" y2="310.5"/>
+</g>
+<rect x="565.5" y="285.1" class="st0" width="37.5" height="50.8"/>
+<text transform="matrix(1 0 0 1 565.4766 331.2837)" class="st1 st7">+</text>
+<g>
+	<rect x="61.7" y="396.4" class="st0" width="31.5" height="43.8"/>
+	<text transform="matrix(1 0 0 1 61.6987 436.0332)" class="st3 st1 st8">2</text>
+	<rect x="61.7" y="445.4" class="st0" width="31.5" height="43.8"/>
+	<text transform="matrix(1 0 0 1 64.0322 480.8926)" class="st1 st8">3</text>
+	<line class="st5" x1="51.8" y1="440.2" x2="99.1" y2="440.2"/>
+</g>
+<g>
+	<rect x="158.8" y="396.4" class="st0" width="31.5" height="43.8"/>
+	<text transform="matrix(1 0 0 1 158.8535 435.0039)" class="st9 st1 st8">4</text>
+	<rect x="158.8" y="445.4" class="st0" width="31.5" height="43.8"/>
+	<text transform="matrix(1 0 0 1 162.166 484.7119)" class="st9 st1 st8">6</text>
+	<line class="st10" x1="148.9" y1="440.2" x2="196.2" y2="440.2"/>
+</g>
+<rect x="112.7" y="425" class="st0" width="22.6" height="30.6"/>
+<text transform="matrix(1 0 0 1 112.729 452.7705)" class="st1 st11">=</text>
+<rect x="47.8" y="350.1" class="st0" width="229.8" height="30.6"/>
+<text transform="matrix(1 0 0 1 47.8296 378.6274)" class="st9 st1 st12">Equivalentes:</text>
+<g>
+	<rect x="257.4" y="397.5" class="st0" width="31.5" height="43.8"/>
+	<text transform="matrix(1 0 0 1 257.4624 436.041)" class="st3 st1 st8">6</text>
+	<rect x="257.4" y="446.4" class="st0" width="31.5" height="43.8"/>
+	<text transform="matrix(1 0 0 1 260.7749 485.749)" class="st1 st8">9</text>
+	<line class="st6" x1="247.5" y1="441.3" x2="294.9" y2="441.3"/>
+</g>
+<rect x="211.3" y="425" class="st0" width="22.6" height="30.6"/>
+<text transform="matrix(1 0 0 1 211.3379 452.7705)" class="st1 st11">=</text>
+<g>
+	<rect x="359.1" y="397.5" class="st0" width="31.5" height="43.8"/>
+	<text transform="matrix(1 0 0 1 359.1104 436.041)" class="st3 st1 st8">8</text>
+	<rect x="359.1" y="446.4" class="st0" width="31.5" height="43.8"/>
+	<text transform="matrix(1 0 0 1 342.4951 484.7119)" class="st1 st8">12</text>
+	<line class="st6" x1="349.2" y1="441.3" x2="396.5" y2="441.3"/>
+</g>
+<rect x="311" y="426" class="st0" width="22.6" height="30.6"/>
+<text transform="matrix(1 0 0 1 310.958 453.8076)" class="st1 st11">=</text>
+<g>
+	<g>
+		<rect x="60.2" y="490.2" class="st0" width="31.5" height="43.8"/>
+		<text transform="matrix(1 0 0 1 60.1792 529.8008)" class="st3 st1 st8">1</text>
+		<rect x="60.2" y="539.1" class="st0" width="31.5" height="43.8"/>
+		<text transform="matrix(1 0 0 1 62.5127 574.6611)" class="st1 st8">2</text>
+		<line class="st5" x1="50.3" y1="534" x2="97.6" y2="534"/>
+	</g>
+	<g>
+		<rect x="157.3" y="490.2" class="st0" width="31.5" height="43.8"/>
+		<text transform="matrix(1 0 0 1 157.334 528.7725)" class="st3 st1 st8">2</text>
+		<rect x="157.3" y="539.1" class="st0" width="31.5" height="43.8"/>
+		<text transform="matrix(1 0 0 1 160.6465 578.4805)" class="st1 st8">4</text>
+		<line class="st6" x1="147.4" y1="534" x2="194.7" y2="534"/>
+	</g>
+	<rect x="111.2" y="518.7" class="st0" width="22.6" height="30.6"/>
+	<text transform="matrix(1 0 0 1 111.2095 546.5381)" class="st1 st11">=</text>
+</g>
+<g>
+	<rect x="255.9" y="491.2" class="st0" width="31.5" height="43.8"/>
+	<text transform="matrix(1 0 0 1 255.9429 529.8096)" class="st9 st1 st8">3</text>
+	<rect x="255.9" y="540.2" class="st0" width="31.5" height="43.8"/>
+	<text transform="matrix(1 0 0 1 259.2554 579.5176)" class="st9 st1 st8">6</text>
+	<line class="st10" x1="246" y1="535.1" x2="293.3" y2="535.1"/>
+</g>
+<rect x="209.8" y="518.7" class="st0" width="22.6" height="30.6"/>
+<text transform="matrix(1 0 0 1 209.8184 546.5381)" class="st1 st11">=</text>
+<g>
+	<rect x="357.6" y="491.2" class="st0" width="31.5" height="43.8"/>
+	<text transform="matrix(1 0 0 1 357.5908 529.8096)" class="st3 st1 st8">4</text>
+	<rect x="357.6" y="540.2" class="st0" width="31.5" height="43.8"/>
+	<text transform="matrix(1 0 0 1 359.0977 580.0312)" class="st1 st8">8</text>
+	<line class="st6" x1="347.7" y1="535.1" x2="395" y2="535.1"/>
+</g>
+<rect x="309.4" y="519.8" class="st0" width="22.6" height="30.6"/>
+<text transform="matrix(1 0 0 1 309.4385 547.5752)" class="st1 st11">=</text>
+<g>
+	<rect x="499" y="623.4" class="st0" width="37.5" height="50.8"/>
+	<text transform="matrix(1 0 0 1 498.9651 669.5707)" class="st1 st7">+</text>
+	<g>
+		<rect x="406.7" y="581.5" class="st0" width="50.6" height="70.2"/>
+		<text transform="matrix(1 0 0 1 406.671 643.361)" class="st9 st1 st13">4</text>
+		<rect x="406.7" y="660" class="st0" width="50.6" height="70.2"/>
+		<text transform="matrix(1 0 0 1 411.9815 723.0583)" class="st9 st1 st13">6</text>
+		<line class="st10" x1="390.8" y1="651.8" x2="466.6" y2="651.8"/>
+	</g>
+	<g>
+		<rect x="577.1" y="581" class="st0" width="48.8" height="67.8"/>
+		<text transform="matrix(1 0 0 1 577.0859 640.672)" class="st9 st1 st14">3</text>
+		<rect x="577.1" y="656.7" class="st0" width="48.8" height="67.8"/>
+		<text transform="matrix(1 0 0 1 582.2099 717.5568)" class="st9 st1 st14">6</text>
+		<line class="st10" x1="561.7" y1="648.8" x2="634.9" y2="648.8"/>
+	</g>
+	<rect x="667.6" y="623.4" class="st0" width="37.5" height="50.8"/>
+	<text transform="matrix(1 0 0 1 667.6373 669.5707)" class="st1 st7">=</text>
+	<g>
+		<rect x="757.3" y="577.1" class="st0" width="48.8" height="67.8"/>
+		<text transform="matrix(1 0 0 1 757.2985 636.7224)" class="st3 st1 st14">7</text>
+		<rect x="757.3" y="652.7" class="st0" width="48.8" height="67.8"/>
+		<text transform="matrix(1 0 0 1 762.4225 713.6071)" class="st3 st1 st14">6</text>
+		<line class="st5" x1="741.9" y1="644.8" x2="815.1" y2="644.8"/>
+	</g>
+</g>
+</svg>

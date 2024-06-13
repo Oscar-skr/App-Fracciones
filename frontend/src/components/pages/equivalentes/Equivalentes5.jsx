@@ -65,9 +65,9 @@ const Equivalente5 = () => {
 
     return (
         <div className='div-renderizador'>
-            <h2>Elegí la fracción equivalente
-                a:
-            </h2>
+            <h2> </h2>
+            <h3>Elegí la fracción equivalente</h3>
+            <h3>a</h3>
             {fraccionObjetivo && (
                 <div className="fraccion-equivalente">
                     <p>{fraccionObjetivo.numerador}</p>

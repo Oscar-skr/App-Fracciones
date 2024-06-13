@@ -11,9 +11,12 @@
     align-items: center ; /* Centrar verticalmente */
     position: relative;
     justify-content: center;
+
 }
 
+.contenedorComponente{
 
+}
 
 .buttonleft, .buttonright {
     background-color: transparent;
@@ -46,6 +49,12 @@
     color: #fff;
 }
 
+.buttonleft:active, .buttonright:active {
+    background-color: #005fa3;
+    color: #fff;
+    transition: background-color 0.1s; /* Efecto más rápido al presionar */
+}
+
 .divContenedorBotonIzquierdo, .divContenedorBotonDerecho {
     display: flex;
     justify-content: center; /* Asegura que los botones estén centrados horizontalmente */
@@ -63,6 +72,24 @@
     box-sizing: border-box; /* Incluye padding en el ancho total */
     height: 100%; /* Asegura que el contenedor central ocupe toda la altura disponible */
 }
+.buttonleft, .buttonright {
+    background-color: transparent;
+    border: 2px solid #007bff;
+    color: #007bff;
+    font-size: 24px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    position: absolute; /* Posiciona los botones absolutamente */
+    top: 50%;
+    transform: translateY(-50%); /* Centra verticalmente los botones */
+    -webkit-tap-highlight-color: transparent; /* Elimina el resaltado en dispositivos móviles */
+}
 
 @media (max-width: 1110px) {
     .graficos-css {
@@ -76,17 +103,26 @@
         align-items: center; /* Centrar verticalmente */
         display: flex;
         flex-direction: row !important;
-   
-
     }
 
     .buttonleft, .buttonright {
-        
-        top: auto;
-        left: auto;
-        right: auto;
-        transform: none;
-        margin: 10px; /* Añade margen para separar los botones */
+        top: 50%;
+        transform: translateY(-50%);
+        margin: 0px; /* Añade margen para separar los botones */
+    }
+
+    .buttonleft {
+        left: 5px; /* Ajusta para que esté casi pegado al borde izquierdo */
+    }
+
+    .buttonright {
+        right: 5px; /* Ajusta para que esté casi pegado al borde derecho */
+    }
+
+    .buttonleft:active, .buttonright:active {
+        background-color: #005fa3;
+        color: #fff;
+        transition: background-color 0.1s; /* Efecto más rápido al presionar */
     }
 
     .divContenedorBotonIzquierdo, .divContenedorBotonDerecho {
@@ -97,5 +133,10 @@
 
     .divContenedorCentral {
         display: none; /* Oculta el contenedor central en vista móvil */
+    }
+
+    .buttonleft:hover, .buttonright:hover {
+        background-color: transparent;
+        color: #007bff;
     }
 }

@@ -105,7 +105,11 @@ const Division2 = () => {
         setFracciones(nuevasFracciones);
         setIsInverted(!isInverted); // Cambiar el estado de isInverted
     };
-
+    useEffect(() => {
+        if (selectedNum && selectedDen) {
+            setDivisoresVisibles(true);
+        }
+    }, [selectedNum, selectedDen]);
     const handleCheck = () => {
         const numInput = parseFloat(inputNumerador);
         const denInput = parseFloat(inputDenominador);

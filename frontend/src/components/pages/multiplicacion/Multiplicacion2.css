@@ -1,5 +1,7 @@
 .menu-simplificar-horizontal {
     display: flex;
+    max-width: 100vw;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     background: white;
@@ -17,23 +19,23 @@
 .menu-simplificar-horizontal div {
     margin: 0 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.1s;
 }
 
 .menu-simplificar-horizontal div:hover {
-    background-color: #f0f0f0;
+    background-color: #a2abeb;
 }
 
 .fraccion.seleccionada-correcta {
     background-color: #d4edda; /* Verde claro */
     border: 1px solid #c3e6cb;
-    transition: background-color 1s ease;
+    transition: background-color 0.1s ease;
 }
 
 .fraccion.seleccionada-incorrecta {
     background-color: #f8d7da; /* Rojo claro */
     border: 1px solid #f5c6cb;
-    transition: background-color 1s ease;
+    transition: background-color 0.1s ease;
 }
 
 .fraccion {
@@ -59,4 +61,16 @@
 .contenedorOperaciones {
     display: flex;
     flex-direction: row !important;
+}
+
+.contenedorOperaciones div{
+
+}
+
+@media (max-width: 1100px) {
+    .fraccion {
+
+
+    }
+
 }

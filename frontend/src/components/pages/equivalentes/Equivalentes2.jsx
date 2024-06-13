@@ -3,7 +3,7 @@ import audioOk from '../../../assets/sonidos/ok.mp3';
 import audioWrong from '../../../assets/sonidos/wrong.wav';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleSound } from "../../../redux/actions/soundActions";
+import { toggleSound } from '../../../redux/actions/soundActions';
 import './Equivalentes2.css';
 
 const Equivalentes2 = () => {
@@ -50,18 +50,24 @@ const Equivalentes2 = () => {
     }, [fracciones]);
 
     const handleClick = (id) => {
-        const newSelectedIds = [...selectedIds, id];
+        const newSelectedIds = selectedIds.includes(id)
+            ? selectedIds.filter(selectedId => selectedId !== id)
+            : [...selectedIds, id];
         setSelectedIds(newSelectedIds);
 
         if (newSelectedIds.length === 2) {
             if ((newSelectedIds.includes(1) && newSelectedIds.includes(4)) || 
                 (newSelectedIds.includes(4) && newSelectedIds.includes(1))) {
                 if (sonido) playSoundOk();  // Reproduce el sonido correcto
-                generarNumerosFraccion();
+                setTimeout(() => {
+                    generarNumerosFraccion();
+                }, 1000);
             } else {
                 if (sonido) playSoundWrong();  // Reproduce el sonido incorrecto
+                setTimeout(() => {
+                    setSelectedIds([]);
+                }, 1000);
             }
-            setSelectedIds([]); // Resetear selección
         }
     };
 
@@ -78,10 +84,12 @@ const Equivalentes2 = () => {
             <h3>Elegí las dos fracciones equivalentes</h3>
             <div className="div1">
                 {fracciones.map((fraccion, index) => (
-                    <div key={fraccion.id}  onClick={() => handleClick(fraccion.id)}>
-                        <div className='graficoFraccion'>
-                            {divs[index]}
-                        </div>
+                    <div 
+                        key={fraccion.id} 
+                        onClick={() => handleClick(fraccion.id)} 
+                        className={`graficoFraccion ${selectedIds.includes(fraccion.id) ? 'selected' : ''}`}
+                    >
+                        {divs[index]}
                     </div>
                 ))}
             </div>

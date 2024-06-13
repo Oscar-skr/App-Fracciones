@@ -6,7 +6,7 @@
     position: fixed;
     bottom: 0;
     width: 100vw;
-    height: 3%;
+    height: 4%;
   }
 
   .footer-p{
@@ -17,10 +17,13 @@
     .footer {
         font-size: 12px; /* Tamaño de fuente reducido para vista móvil */
         padding: 10px; /* Ajusta el padding para vista móvil */
+        height: 4%;
+        margin-bottom: 0px;
     }
 
     .footer-p {
       margin-top: 0;
       border-top: 0;
+
   }
 }
