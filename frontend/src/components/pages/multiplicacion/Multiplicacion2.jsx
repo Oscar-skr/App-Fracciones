@@ -4,6 +4,8 @@ import audioWrong from '../../../assets/sonidos/wrong.wav';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleSound } from '../../../redux/actions/soundActions';
+import { aumentarContador, decrementarContador } from "../../../redux/actions/contadorActions";
+import Contador from '../contador/Contador';
 import './Multiplicacion2.css';
 
 const Multiplicacion2 = () => {
@@ -19,23 +21,23 @@ const Multiplicacion2 = () => {
     const [highlightClass, setHighlightClass] = useState('');
     const [correctClass, setCorrectClass] = useState('');
     const [incorrectClass, setIncorrectClass] = useState('');
-    const [loading, setLoading] = useState(true); // Estado para indicar si está cargando
+    const [loading, setLoading] = useState(true);
 
     const dispatch = useDispatch();
     const sonido = useSelector(state => state.sound.sonido);
 
     const generarMultiplicaciones = async () => {
         try {
-            setLoading(true); // Iniciar carga
+            setLoading(true);
             const response = await fetch(`https://fractionsapp-3.onrender.com/operaciones?tipo=multiplicacion`);
             const data = await response.json();
             setFracciones(data.fracciones);
             setResultado(data.resultado);
-            setLoading(false); // Terminar carga
+            setLoading(false);
             console.log(data);
         } catch (error) {
             console.error('Error al generar las fracciones:', error);
-            setLoading(false); // Terminar carga incluso si hay un error
+            setLoading(false);
         }
     };
 
@@ -98,6 +100,7 @@ const Multiplicacion2 = () => {
         if (correcto) {
             if (sonido) {
                 playSoundOk();
+                dispatch(aumentarContador());
             }
             generarMultiplicaciones();
             setInputNumerador('');
@@ -105,6 +108,7 @@ const Multiplicacion2 = () => {
         } else {
             if (sonido) {
                 playSoundWrong();
+                dispatch(decrementarContador());
             }
         }
     };
@@ -112,6 +116,7 @@ const Multiplicacion2 = () => {
     return (
         <div>
             <div className='div-renderizador'>
+                <Contador />
                 {loading ? (
                     <div className='loading-container'><p>Cargando...</p></div>
                 ) : (

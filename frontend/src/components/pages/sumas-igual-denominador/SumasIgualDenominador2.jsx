@@ -5,6 +5,8 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleSound } from '../../../redux/actions/soundActions';
 import './SumasIgualDenominador2.css';
+import { aumentarContador, decrementarContador } from "../../../redux/actions/contadorActions";
+import Contador from '../contador/Contador';
 
 const SumasIgualDenominador2 = () => {
     const [playSoundOk] = useSound(audioOk);
@@ -14,12 +16,14 @@ const SumasIgualDenominador2 = () => {
     const [inputNumerador, setInputNumerador] = useState('');
     const [inputDenominador, setInputDenominador] = useState('');
     const [operaciones, setOperaciones] = useState('');
+    const [loading, setLoading] = useState(true);
 
     const dispatch = useDispatch();
     const sonido = useSelector(state => state.sound.sonido);
 
     const generarNumerosFraccion = async () => {
         try {
+            setLoading(true);
             const response = await fetch(`https://fractionsapp-3.onrender.com/fracciones`);
             const data = await response.json();
             const fraccionesData = data.filter(item => item.numerador !== undefined && item.denominador !== undefined);
@@ -27,20 +31,18 @@ const SumasIgualDenominador2 = () => {
             const fraccionesOperaciones = data.filter(item => item.operacion !== undefined);
             setFracciones(fraccionesData);
             setResultado(resultadoData);
-            setOperaciones(fraccionesOperaciones)
+            setOperaciones(fraccionesOperaciones);
+            setLoading(false);
             console.log(data);
         } catch (error) {
             console.error('Error al generar la fracción:', error);
+            setLoading(false);
         }
     };
 
     useEffect(() => {
         generarNumerosFraccion();
     }, []);
-
-    if (fracciones.length === 0 || !resultado) {
-        return <div className='loading-container'><p>Cargando...</p></div>;
-    }
 
     const handleSonido = () => {
         dispatch(toggleSound());
@@ -51,6 +53,7 @@ const SumasIgualDenominador2 = () => {
         if (correcto) {
             if (sonido) {
                 playSoundOk();
+                dispatch(aumentarContador());
             }
             generarNumerosFraccion();
             setInputNumerador('');
@@ -58,6 +61,7 @@ const SumasIgualDenominador2 = () => {
         } else {
             if (sonido) {
                 playSoundWrong();
+                dispatch(decrementarContador());
             }
         }
     };
@@ -72,61 +76,66 @@ const SumasIgualDenominador2 = () => {
     };
 
     return (
-        <div >
-            <div className='div-renderizador'>
-            <h2>Resolvé la siguiente operación:</h2>
-            <div className="operacionsid div1 div2">
-                {fracciones.map((fraccion, index) => (
-                    <div className="contenedorOperaciones" key={index}>
-                        <div className="fraccion-sid">
-                            <p>{fraccion.numerador}</p>
-                            <p className="fraccion-span"></p>
-                            <p>{fraccion.denominador}</p>
+        <div className='div-renderizador'>
+            <Contador />
+            {loading ? (
+                <div className='loading-container'><p>Cargando...</p></div>
+            ) : (
+                <>
+                    <h2>Resolvé la siguiente operación:</h2>
+                    <div className="operacionsid div1 div2">
+                        {fracciones.map((fraccion, index) => (
+                            <div className="contenedorOperaciones" key={index}>
+                                <div className="fraccion-sid">
+                                    <p>{fraccion.numerador}</p>
+                                    <p className="fraccion-span"></p>
+                                    <p>{fraccion.denominador}</p>
+                                </div>
+                                {index < fracciones.length - 1 && (
+                                    <span className='fraccion-signo'>
+                                        {operaciones[index]?.operacion === "suma" ? " + " : " - "}
+                                    </span>
+                                )}
+                            </div>
+                        ))}
+                        <div className="resultado">
+                            <div>
+                                <p>=</p>
+                            </div>
+                            
+                            <div className="introducir-datos">
+                                <div className="fraccion">
+                                    <input 
+                                        type="text" 
+                                        inputMode="numeric" 
+                                        name="inputNumeradorName" 
+                                        className='inputFraccion' 
+                                        autoComplete="off" 
+                                        value={inputNumerador} 
+                                        onChange={handleOnChange} 
+                                        placeholder="Numerador"
+                                    />
+                                    <span className="fraccion-span"></span>
+                                    <input 
+                                        type="text" 
+                                        inputMode="numeric" 
+                                        name="inputDenominadorName" 
+                                        autoComplete="off" 
+                                        value={inputDenominador} 
+                                        onChange={handleOnChange} 
+                                        placeholder="Denominador"
+                                    />
+                                </div>
+                            </div>
                         </div>
-                        {index < fracciones.length - 1 && (
-                            <span className='fraccion-signo'>
-                                {operaciones[index]?.operacion === "suma" ? " + " : " - "}
-                            </span>
-                        )}
                     </div>
-                ))}
-                <div className="resultado">
-                    <div>
-                        <p>=</p>
+                    <div className='contenedor-Botones'>
+                        <button onClick={handleSonido} className='boton-app'>{sonido ? 'Sonido on' : 'Sonido off'}</button>
+                        <button onClick={handleClick} className='boton-app'>Chequear</button>
+                        <button onClick={generarNumerosFraccion} className='boton-app'>Generar otra</button>
                     </div>
-                    
-                    <div className="introducir-datos">
-                        <div className="fraccion">
-                            <input 
-                                type="text" 
-                                inputMode="numeric" 
-                                name="inputNumeradorName" 
-                                className='inputFraccion' 
-                                autoComplete="off" 
-                                value={inputNumerador} 
-                                onChange={handleOnChange} 
-                                placeholder="Numerador"
-                            />
-                            <span className="fraccion-span"></span>
-                            <input 
-                                type="text" 
-                                inputMode="numeric" 
-                                name="inputDenominadorName" 
-                                autoComplete="off" 
-                                value={inputDenominador} 
-                                onChange={handleOnChange} 
-                                placeholder="Denominador"
-                            />
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className='contenedor-Botones'>
-                <button onClick={handleSonido} className='boton-app'>{sonido ? 'Sonido on' : 'Sonido off'}</button>
-                <button onClick={handleClick} className='boton-app'>Chequear</button>
-                <button onClick={generarNumerosFraccion} className='boton-app'>Generar otra</button>
-            </div>
-            </div>
+                </>
+            )}
         </div>
     );
 };

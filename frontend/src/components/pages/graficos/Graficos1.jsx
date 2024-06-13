@@ -5,6 +5,8 @@ import audioOk from '../../../assets/sonidos/ok.mp3';
 import audioWrong from '../../../assets/sonidos/wrong.wav';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleSound } from "../../../redux/actions/soundActions";
+import { aumentarContador, decrementarContador } from "../../../redux/actions/contadorActions";
+import Contador from '../contador/Contador';
 
 const Graficos1 = () => {
   const [numerador, setNumerador] = useState(null);
@@ -64,11 +66,13 @@ const Graficos1 = () => {
   const chequearDatos = () => {
     if (parseInt(inputNumerador) === numerador && parseInt(inputDenominador) === denominador) {
       if (sonido) playSoundOk();
+      dispatch(aumentarContador())
       setInputNumerador("");
       setInputDenominador("");
       generarNumerosFraccion();
     } else {
       if (sonido) playSoundWrong();
+      dispatch(decrementarContador())
       setInputNumerador("");
       setInputDenominador("");
     }
@@ -80,13 +84,16 @@ const Graficos1 = () => {
 
   return (
     <div className="div-renderizador">
+       <Contador />
       {loading ? (
         <div className="loading-container">
           <p>Cargando...</p>
         </div>
       ) : (
         <>
+         
           <h3>Introducí el numerador y el denominador:</h3>
+          
           <div className="graficoFraccion">{divs}</div>
           <span></span>
           <div className="introducir-datos">

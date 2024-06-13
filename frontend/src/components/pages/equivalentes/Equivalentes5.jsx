@@ -4,6 +4,8 @@ import audioWrong from '../../../assets/sonidos/wrong.wav';
 import { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleSound } from '../../../redux/actions/soundActions';
+import { aumentarContador, decrementarContador } from "../../../redux/actions/contadorActions";
+import Contador from '../contador/Contador';
 import './Equivalentes5.css';
 
 const Equivalente5 = () => {
@@ -63,11 +65,13 @@ const Equivalente5 = () => {
         const correcto = (tipoEjercicio === 'equivalentes' && id === 1) || (tipoEjercicio === 'generarFraccion' && id === 4);
         if (correcto) {
             if (sonido) {
+                dispatch(aumentarContador());
                 playSoundOk();
             }
             generarNumerosFraccion();
         } else {
             if (sonido) {
+                dispatch(decrementarContador());
                 playSoundWrong();
             }
         }
@@ -75,6 +79,7 @@ const Equivalente5 = () => {
 
     return (
         <div className='div-renderizador'>
+            <Contador />
             {loading ? (
                 <div className='loading-container'><p>Cargando...</p></div>
             ) : (

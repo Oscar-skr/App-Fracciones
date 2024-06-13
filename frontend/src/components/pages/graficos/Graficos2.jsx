@@ -5,6 +5,8 @@ import audioOk from '../../../assets/sonidos/ok.mp3';
 import audioWrong from '../../../assets/sonidos/wrong.wav';
 import { useDispatch, useSelector } from "react-redux";
 import { toggleSound } from "../../../redux/actions/soundActions";
+import { aumentarContador, decrementarContador } from "../../../redux/actions/contadorActions";
+import Contador from '../contador/Contador';
 
 const Graficos2 = () => {
     const [playSoundOk] = useSound(audioOk);
@@ -14,18 +16,22 @@ const Graficos2 = () => {
     const [variable1, setVariable1] = useState(null);
     const [variable2, setVariable2] = useState(null);
     const [variable3, setVariable3] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     const dispatch = useDispatch();
     const sonido = useSelector(state => state.sound.sonido);
 
     const generarNumerosFraccion = async () => {
         try {
+            setLoading(true); // Iniciar carga
             const response = await fetch('https://fractionsapp-3.onrender.com/graficos/generarFraccion?cantidad=3');
             const data = await response.json();
             setFracciones(data);
             console.log(data);
+            setLoading(false); // Terminar carga
         } catch (error) {
             console.error('Error al generar la fracción:', error);
+            setLoading(false); // Terminar carga incluso si hay un error
         }
     };
 
@@ -69,19 +75,17 @@ const Graficos2 = () => {
         }
     }, [fracciones]);
 
-    if (divs.length === 0 || variable1 === null || variable2 === null || variable3 === null) {
-        return <div className="loading-container"><p>Cargando...</p></div>;
-    }
-
     const DivClickeable = (props) => {
         const handleClick = () => {
             if (props.correcto) {
                 if (sonido) {
+                    dispatch(aumentarContador());
                     playSoundOk();
                 }
                 generarNumerosFraccion();
             } else {
                 if (sonido) {
+                    dispatch(decrementarContador());
                     playSoundWrong();
                 }
             }
@@ -100,29 +104,38 @@ const Graficos2 = () => {
 
     return (
         <div className='div-renderizador'>
-            <h3>Elegí el gráfico que representa a</h3>
-            <div className="fraccion">
-                <p>{fracciones[0].numerador}</p>
-                <p className="fraccion-span"></p>
-                <p>{fracciones[0].denominador}</p>
-            </div>
-            <div className="div1">
-                <DivClickeable className='graficoFraccion' correcto={fracciones[variable1] === fracciones[0]}>
-                    {divs[variable1]}
-                </DivClickeable>
-            
-                <DivClickeable correcto={fracciones[variable2] === fracciones[0]}>
-                    {divs[variable2]}
-                </DivClickeable>
-         
-                <DivClickeable correcto={fracciones[variable3] === fracciones[0]}>
-                    {divs[variable3]}
-                </DivClickeable>
-            </div>
-            <div>
-                <button onClick={handleSonido} className='boton-app'>{sonido ? 'Sonido on' : 'Sonido off'}</button>
-                <button onClick={generarNumerosFraccion} className='boton-app'>Generar otra</button>
-            </div>
+            <Contador />
+            {loading ? (
+                <div className="loading-container">
+                    <p>Cargando...</p>
+                </div>
+            ) : (
+                <>
+                    <h3>Elegí el gráfico que representa a</h3>
+                    <div className="fraccion">
+                        <p>{fracciones[0].numerador}</p>
+                        <p className="fraccion-span"></p>
+                        <p>{fracciones[0].denominador}</p>
+                    </div>
+                    <div className="div1">
+                        <DivClickeable className='graficoFraccion' correcto={fracciones[variable1] === fracciones[0]}>
+                            {divs[variable1]}
+                        </DivClickeable>
+
+                        <DivClickeable correcto={fracciones[variable2] === fracciones[0]}>
+                            {divs[variable2]}
+                        </DivClickeable>
+
+                        <DivClickeable correcto={fracciones[variable3] === fracciones[0]}>
+                            {divs[variable3]}
+                        </DivClickeable>
+                    </div>
+                    <div>
+                        <button onClick={handleSonido} className='boton-app'>{sonido ? 'Sonido on' : 'Sonido off'}</button>
+                        <button onClick={generarNumerosFraccion} className='boton-app'>Generar otra</button>
+                    </div>
+                </>
+            )}
         </div>
     );
 };

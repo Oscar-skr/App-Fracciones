@@ -4,6 +4,8 @@ import audioOk from '../../../assets/sonidos/ok.mp3';
 import audioWrong from '../../../assets/sonidos/wrong.wav';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleSound } from '../../../redux/actions/soundActions';
+import { aumentarContador, decrementarContador } from "../../../redux/actions/contadorActions";
+import Contador from '../contador/Contador';
 import './Division2.css';
 
 const Division2 = () => {
@@ -18,24 +20,24 @@ const Division2 = () => {
     const [divisoresVisibles, setDivisoresVisibles] = useState(false);
     const [highlightClass, setHighlightClass] = useState('');
     const [isInverted, setIsInverted] = useState(false);
-    const [loading, setLoading] = useState(true); // Estado para indicar si está cargando
+    const [loading, setLoading] = useState(true);
 
     const dispatch = useDispatch();
     const sonido = useSelector(state => state.sound.sonido);
 
     const generarDivisiones = async () => {
         try {
-            setLoading(true); // Iniciar carga
+            setLoading(true);
             const response = await fetch(`https://fractionsapp-3.onrender.com/operaciones?tipo=division`);
             const data = await response.json();
             setFracciones(data.fracciones);
             setResultado(data.resultado);
             setIsInverted(false);
-            setLoading(false); // Terminar carga
+            setLoading(false);
             console.log(data);
         } catch (error) {
             console.error('Error al generar las fracciones:', error);
-            setLoading(false); // Terminar carga incluso si hay un error
+            setLoading(false);
         }
     };
 
@@ -107,7 +109,7 @@ const Division2 = () => {
         };
         const nuevasFracciones = [fracciones[0], invertida];
         setFracciones(nuevasFracciones);
-        setIsInverted(!isInverted); // Cambiar el estado de isInverted
+        setIsInverted(!isInverted);
     };
 
     useEffect(() => {
@@ -124,6 +126,7 @@ const Division2 = () => {
         if (correcto) {
             if (sonido) {
                 playSoundOk();
+                dispatch(aumentarContador());
             }
             generarDivisiones();
             setInputNumerador('');
@@ -131,6 +134,7 @@ const Division2 = () => {
         } else {
             if (sonido) {
                 playSoundWrong();
+                dispatch(decrementarContador());
             }
         }
     };
@@ -138,6 +142,7 @@ const Division2 = () => {
     return (
         <div>
             <div className='div-renderizador'>
+                <Contador />
                 {loading ? (
                     <div className='loading-container'><p>Cargando...</p></div>
                 ) : (

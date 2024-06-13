@@ -5,6 +5,8 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleSound } from '../../../redux/actions/soundActions';
 import './Equivalentes2.css';
+import { aumentarContador, decrementarContador } from "../../../redux/actions/contadorActions";
+import Contador from '../contador/Contador';
 
 const Equivalentes2 = () => {
     const [playSoundOk] = useSound(audioOk);
@@ -12,20 +14,24 @@ const Equivalentes2 = () => {
     const [fracciones, setFracciones] = useState([]);
     const [divs, setDivs] = useState([]);
     const [selectedIds, setSelectedIds] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     const dispatch = useDispatch();
     const sonido = useSelector(state => state.sound.sonido);
 
     const generarNumerosFraccion = async () => {
         try {
+            setLoading(true);
             const response = await fetch('https://fractionsapp-3.onrender.com/graficos/generarFraccion?cantidad=4');
             const data = await response.json();
             setFracciones(data);
             setSelectedIds([]);
             setDivs([]); // Limpiar los divs antes de generar nuevas fracciones
+            setLoading(false);
             console.log(data);
         } catch (error) {
             console.error('Error al generar la fracción:', error);
+            setLoading(false);
         }
     };
 
@@ -58,12 +64,18 @@ const Equivalentes2 = () => {
         if (newSelectedIds.length === 2) {
             if ((newSelectedIds.includes(1) && newSelectedIds.includes(4)) || 
                 (newSelectedIds.includes(4) && newSelectedIds.includes(1))) {
-                if (sonido) playSoundOk();  // Reproduce el sonido correcto
+                if (sonido){ 
+                    dispatch(aumentarContador());
+                    playSoundOk();
+                }  // Reproduce el sonido correcto
                 setTimeout(() => {
                     generarNumerosFraccion();
                 }, 1000);
             } else {
-                if (sonido) playSoundWrong();  // Reproduce el sonido incorrecto
+                if (sonido) {
+                    dispatch(decrementarContador());
+                    playSoundWrong();
+                }  // Reproduce el sonido incorrecto
                 setTimeout(() => {
                     setSelectedIds([]);
                 }, 1000);
@@ -75,28 +87,31 @@ const Equivalentes2 = () => {
         dispatch(toggleSound());
     };
 
-    if (divs.length === 0) {
-        return <div className='loading-container'><p>Cargando...</p></div>;
-    }
-
     return (
         <div className='div-renderizador'>
-            <h3>Elegí las dos fracciones equivalentes</h3>
-            <div className="div1">
-                {fracciones.map((fraccion, index) => (
-                    <div 
-                        key={fraccion.id} 
-                        onClick={() => handleClick(fraccion.id)} 
-                        className={`graficoFraccion ${selectedIds.includes(fraccion.id) ? 'selected' : ''}`}
-                    >
-                        {divs[index]}
+            <Contador />
+            {loading ? (
+                <div className='loading-container'><p>Cargando...</p></div>
+            ) : (
+                <>
+                    <h3>Elegí las dos fracciones equivalentes</h3>
+                    <div className="div1">
+                        {fracciones.map((fraccion, index) => (
+                            <div 
+                                key={fraccion.id} 
+                                onClick={() => handleClick(fraccion.id)} 
+                                className={`graficoFraccion ${selectedIds.includes(fraccion.id) ? 'selected' : ''}`}
+                            >
+                                {divs[index]}
+                            </div>
+                        ))}
                     </div>
-                ))}
-            </div>
-            <div>
-                <button onClick={handleSonido} className='boton-app'>{sonido ? 'Sonido on' : 'Sonido off'}</button>
-                <button onClick={generarNumerosFraccion} className='boton-app'>Generar otra</button>
-            </div>
+                    <div>
+                        <button onClick={handleSonido} className='boton-app'>{sonido ? 'Sonido on' : 'Sonido off'}</button>
+                        <button onClick={generarNumerosFraccion} className='boton-app'>Generar otra</button>
+                    </div>
+                </>
+            )}
         </div>
     );
 };
