@@ -2,7 +2,7 @@ import MultiplicacionesDefault from '../../../assets/MultiplicacionDefault.svg';
 import MultiplicacionesMobile1 from '../../../assets/MultiplicacionMobile1.svg';
 import MultiplicacionesMobile2 from '../../../assets/MultiplicacionMobile2.svg';
 import MultiplicacionesMobile3 from '../../../assets/MultiplicacionMobile3.svg';
-import './Multiplicacion1.css';
+//import './Multiplicacion1.css';
 
 const Multiplicacion1 = () => {
     return (

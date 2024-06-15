@@ -14,6 +14,7 @@ const Equivalentes3 = () => {
     const [fracciones, setFracciones] = useState([]);
     const [opciones, setOpciones] = useState([]);
     const [loading, setLoading] = useState(true); // Estado para indicar si está cargando
+    const [correcto, setCorrecto] = useState(null); // Añadir estado para manejar la respuesta correcta o incorrecta
 
     const dispatch = useDispatch();
     const sonido = useSelector(state => state.sound.sonido);
@@ -26,6 +27,7 @@ const Equivalentes3 = () => {
             setFracciones(data);
             setOpciones(shuffleArray(data.filter(f => f.id !== 1)));
             setLoading(false);
+            setCorrecto(null); // Restablecer el estado de respuesta
             console.log(data);
         } catch (error) {
             console.error('Error al generar la fracción:', error);
@@ -55,12 +57,19 @@ const Equivalentes3 = () => {
                 dispatch(aumentarContador());
                 playSoundOk();  // Reproduce el sonido correcto
             }
-            generarNumerosFraccion();
+            setCorrecto(true);
+            setTimeout(() => {
+                generarNumerosFraccion();
+            }, 1000);
         } else {
             if (sonido) {
                 dispatch(decrementarContador());
                 playSoundWrong();  // Reproduce el sonido incorrecto
             }
+            setCorrecto(false);
+            setTimeout(() => {
+                setCorrecto(null);
+            }, 1000);
         }
     };
 
@@ -68,7 +77,7 @@ const Equivalentes3 = () => {
 
     return (
         <div className='div-renderizador'>
-            <Contador />
+            <Contador correcto={correcto} />
             {loading ? (
                 <div className='loading-container'><p>Cargando...</p></div>
             ) : (
@@ -83,7 +92,7 @@ const Equivalentes3 = () => {
                     </div>
                     <div className="div2">
                         {opciones.map((fraccion, index) => (
-                            <div className='contenedorEquivalentes' key={index}  onClick={() => handleClick(fraccion.id === 4)}>
+                            <div className='contenedorEquivalentes' key={index} onClick={() => handleClick(fraccion.id === 4)}>
                                 <div className='fraccion-equivalente'>
                                     <p>{fraccion.numerador}</p>
                                     <p className="fraccion-span"></p>

@@ -21,6 +21,7 @@ const Division2 = () => {
     const [highlightClass, setHighlightClass] = useState('');
     const [isInverted, setIsInverted] = useState(false);
     const [loading, setLoading] = useState(true);
+    const [correcto, setCorrecto] = useState(null); // Añadir estado para manejar la respuesta correcta o incorrecta
 
     const dispatch = useDispatch();
     const sonido = useSelector(state => state.sound.sonido);
@@ -33,6 +34,7 @@ const Division2 = () => {
             setFracciones(data.fracciones);
             setResultado(data.resultado);
             setIsInverted(false);
+            setCorrecto(null); // Restablecer el estado de respuesta
             setLoading(false);
             console.log(data);
         } catch (error) {
@@ -121,28 +123,36 @@ const Division2 = () => {
     const handleCheck = () => {
         const numInput = parseFloat(inputNumerador);
         const denInput = parseFloat(inputDenominador);
-        const correcto = (numInput / denInput) === resultado.decimal;
+        const esCorrecto = (numInput / denInput) === resultado.decimal;
 
-        if (correcto) {
+        if (esCorrecto) {
             if (sonido) {
                 playSoundOk();
                 dispatch(aumentarContador());
+                setCorrecto(true);
+                setTimeout(() => {
+                    setCorrecto(null);
+                    generarDivisiones();
+                }, 1000); // Restablecer el estado después de 1 segundo y generar nuevas fracciones
             }
-            generarDivisiones();
-            setInputNumerador('');
-            setInputDenominador('');
         } else {
             if (sonido) {
                 playSoundWrong();
                 dispatch(decrementarContador());
+                setCorrecto(false);
+                setTimeout(() => {
+                    setCorrecto(null);
+                }, 1000); // Restablecer el estado después de 1 segundo
             }
         }
+        setInputNumerador('');
+        setInputDenominador('');
     };
 
     return (
         <div>
             <div className='div-renderizador'>
-                <Contador />
+                <Contador correcto={correcto} />
                 {loading ? (
                     <div className='loading-container'><p>Cargando...</p></div>
                 ) : (

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import './Graficos1.css';
 import useSound from 'use-sound';
 import audioOk from '../../../assets/sonidos/ok.mp3';
 import audioWrong from '../../../assets/sonidos/wrong.wav';
@@ -7,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toggleSound } from "../../../redux/actions/soundActions";
 import { aumentarContador, decrementarContador } from "../../../redux/actions/contadorActions";
 import Contador from '../contador/Contador';
+import './Graficos1.css';
 
 const Graficos1 = () => {
   const [numerador, setNumerador] = useState(null);
@@ -17,6 +17,7 @@ const Graficos1 = () => {
   const [loading, setLoading] = useState(true); // Estado para indicar si está cargando
   const [playSoundOk] = useSound(audioOk);
   const [playSoundWrong] = useSound(audioWrong);
+  const [correcto, setCorrecto] = useState(null); // Nuevo estado para controlar el efecto visual
 
   const dispatch = useDispatch();
   const sonido = useSelector(state => state.sound.sonido);
@@ -67,15 +68,18 @@ const Graficos1 = () => {
     if (parseInt(inputNumerador) === numerador && parseInt(inputDenominador) === denominador) {
       if (sonido) playSoundOk();
       dispatch(aumentarContador())
+      setCorrecto(true); // Actualizar el estado de correcto
       setInputNumerador("");
       setInputDenominador("");
       generarNumerosFraccion();
     } else {
       if (sonido) playSoundWrong();
       dispatch(decrementarContador())
+      setCorrecto(false); // Actualizar el estado de incorrecto
       setInputNumerador("");
       setInputDenominador("");
     }
+    setTimeout(() => setCorrecto(null), 500); // Resetear el estado de correcto después de 500ms
   }
 
   const handleSonido = () => {
@@ -84,7 +88,9 @@ const Graficos1 = () => {
 
   return (
     <div className="div-renderizador">
-       <Contador />
+      <div className="divContador">
+       <Contador correcto={correcto} />
+       </div>
       {loading ? (
         <div className="loading-container">
           <p>Cargando...</p>
@@ -95,16 +101,18 @@ const Graficos1 = () => {
           <h3>Introducí el numerador y el denominador:</h3>
           
           <div className="graficoFraccion">{divs}</div>
-          <span></span>
+          
           <div className="introducir-datos">
             <div className="fracciong">
               <input type="text" inputMode="numeric" name="inputNumeradorName" className='inputFraccion' autoComplete="off" value={inputNumerador} onChange={handleOnChange} placeholder="Numerador"/>
               <span className="fraccion-span"></span>
               <input type="text" inputMode="numeric" name="inputDenominadorName" autoComplete="off" value={inputDenominador} onChange={handleOnChange} placeholder="Denominador"/>
             </div>
+            <div className="divContenedorBotones">
             <button onClick={chequearDatos} className="boton-app">Chequear</button>
             <button onClick={handleSonido} className="boton-app">{sonido ? 'Sonido on' : 'Sonido off'}</button>
             <button onClick={generarNumerosFraccion} className="boton-app">Generar otra</button>
+          </div>
           </div>
         </>
       )}

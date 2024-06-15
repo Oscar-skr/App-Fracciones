@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toggleSound } from '../../../redux/actions/soundActions';
 import { aumentarContador, decrementarContador } from "../../../redux/actions/contadorActions";
 import Contador from '../contador/Contador';
-import './Potenciacion2.css';
+//import './Potenciacion2.css';
 
 const Potenciacion2 = () => {
     const [playSoundOk] = useSound(audioOk);
@@ -18,6 +18,7 @@ const Potenciacion2 = () => {
     const [inputNumerador, setInputNumerador] = useState('');
     const [inputDenominador, setInputDenominador] = useState('');
     const [loading, setLoading] = useState(true);
+    const [correcto, setCorrecto] = useState(null); // Añadir estado para manejar la respuesta correcta o incorrecta
 
     const dispatch = useDispatch();
     const sonido = useSelector(state => state.sound.sonido);
@@ -31,6 +32,7 @@ const Potenciacion2 = () => {
             setExponente(data.exponente);
             setTipo(data.tipo);
             setResultado(data.resultado);
+            setCorrecto(null); // Restablecer el estado de respuesta
             setLoading(false);
             console.log(data);
         } catch (error) {
@@ -50,28 +52,36 @@ const Potenciacion2 = () => {
     const handleCheck = () => {
         const numInput = parseFloat(inputNumerador);
         const denInput = parseFloat(inputDenominador);
-        const correcto = (numInput / denInput) === resultado.decimal;
+        const esCorrecto = (numInput / denInput) === resultado.decimal;
 
-        if (correcto) {
+        if (esCorrecto) {
             if (sonido) {
                 playSoundOk();
                 dispatch(aumentarContador());
+                setCorrecto(true);
+                setTimeout(() => {
+                    setCorrecto(null);
+                    generarPotenciacion();
+                }, 1000); // Restablecer el estado después de 1 segundo y generar nuevas fracciones
             }
-            generarPotenciacion();
-            setInputNumerador('');
-            setInputDenominador('');
         } else {
             if (sonido) {
                 playSoundWrong();
                 dispatch(decrementarContador());
+                setCorrecto(false);
+                setTimeout(() => {
+                    setCorrecto(null);
+                }, 1000); // Restablecer el estado después de 1 segundo
             }
         }
+        setInputNumerador('');
+        setInputDenominador('');
     };
 
     return (
         <div>
             <div className='div-renderizador'>
-                <Contador />
+                <Contador correcto={correcto} />
                 {loading ? (
                     <div className='loading-container'><p>Cargando...</p></div>
                 ) : (

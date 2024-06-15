@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Division1 from "./Division1";
 import Division2 from "./Division2";
-import './Division.css';
+//import './Division.css';
 
 
 const Division = () => {

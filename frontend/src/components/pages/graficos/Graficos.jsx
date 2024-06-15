@@ -1,8 +1,8 @@
-import './Graficos.css';
 import Graficos1 from './Graficos1';
 import Graficos2 from './Graficos2';
 import RepasoGraficos from './RepasoGraficos';
 import { useState } from 'react';
+import './Graficos.css';
 
 const Graficos = () => {
 

@@ -1,12 +1,129 @@
-.contenedorContador{
+.contenedorContador {
     border-radius: 50%;
-    border: 1px solid black;
     width: 50px;
     height: 50px;
     color: blue;
     background-color: #fff;
-    display: grid;
-    place-items: center;
-    justify-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: larger;
+    user-select: none; /* Standard */
+    -webkit-user-select: none; /* Chrome, Safari, Opera */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    transition: background-color 0.5s ease, box-shadow 0.5s ease;
+}
+
+.contenedorContador p {
+    margin-top: 0; /* Ajustar para centrar el texto verticalmente */
+    border-radius: 50%;
+}
+
+.correcto .flip-card-inner {
+    transform: rotateY(180deg);
+    animation: shine-green 0.8s;
+    border-radius: 50%;
+}
+
+.incorrecto .flip-card-inner {
+    transform: rotateY(-180deg);
+    animation: shine-red 0.8s;
+    border-radius: 50%;
+}
+
+@keyframes shine-green {
+    0% { box-shadow: 0 0 10px green; }
+    50% { box-shadow: 0 0 30px green; }
+    100% { box-shadow: 0 0 10px green; }
+}
+
+@keyframes shine-red {
+    0% { box-shadow: 0 0 10px red; }
+    50% { box-shadow: 0 0 30px red; }
+    100% { box-shadow: 0 0 10px red; }
+}
+
+.flip-card {
+    background-color: transparent;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    margin-bottom: 5px;
+}
+
+.flip-card-front {
+    background-color: #fff;
+    color: black;
+}
+
+.flip-card-front p{
+    margin-top: 10px;
+}
+
+.flip-card-back p{
+    margin-top: 10px;
+}
+
+.flip-card-back {
+    color: transparent;
+    transform: rotateY(180deg);
+}
+
+.incorrecto .flip-card-back {
+    color: transparent;
+}
+
+.contenedorContadorOculto {
+    border-radius: 50%;
+    border: none;
+    width: 50px;
+    height: 50px;
+    user-select: none; /* Standard */
+    -webkit-user-select: none; /* Chrome, Safari, Opera */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+}
+
+.eyeContenedor {
+    width: 50px;
+    height: 50px;
+}
+
+/* Media query para deshabilitar la rotación en dispositivos móviles */
+@media (max-width: 600px) {
+    .correcto .flip-card-inner,
+    .incorrecto .flip-card-inner {
+        transform: none;
+    }
+
+    .correcto .flip-card {
+        animation: shine-green 0.8s;
+    }
+
+    .incorrecto .flip-card {
+        animation: shine-red 0.8s;
+    }
 }

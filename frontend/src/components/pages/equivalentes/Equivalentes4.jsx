@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toggleSound } from '../../../redux/actions/soundActions';
 import { aumentarContador, decrementarContador } from "../../../redux/actions/contadorActions";
 import Contador from '../contador/Contador';
-import './Equivalentes4.css';
+//import './Equivalentes4.css';
 
 const Equivalentes4 = () => {
     const [playSoundOk] = useSound(audioOk);
@@ -14,6 +14,7 @@ const Equivalentes4 = () => {
     const [fracciones, setFracciones] = useState([]);
     const [opciones, setOpciones] = useState([]);
     const [loading, setLoading] = useState(true); // Estado para indicar si está cargando
+    const [correcto, setCorrecto] = useState(null); // Añadir estado para manejar la respuesta correcta o incorrecta
 
     const dispatch = useDispatch();
     const sonido = useSelector(state => state.sound.sonido);
@@ -30,6 +31,7 @@ const Equivalentes4 = () => {
             setOpciones(opcionesBarajadas);
             console.log('Opciones barajadas:', opcionesBarajadas);
             setLoading(false); // Terminar carga
+            setCorrecto(null); // Restablecer el estado de respuesta
         } catch (error) {
             console.error('Error al generar la fracción:', error);
             setLoading(false); // Terminar carga incluso si hay un error
@@ -62,18 +64,25 @@ const Equivalentes4 = () => {
                 dispatch(aumentarContador());
                 playSoundOk();  // Reproduce el sonido correcto
             }
-            generarNumerosFraccion();
+            setCorrecto(true);
+            setTimeout(() => {
+                generarNumerosFraccion();
+            }, 1000);
         } else {
             if (sonido) {
                 dispatch(decrementarContador());
                 playSoundWrong();  // Reproduce el sonido incorrecto
             }
+            setCorrecto(false);
+            setTimeout(() => {
+                setCorrecto(null);
+            }, 1000);
         }
     };
 
     return (
         <div className='div-renderizador'>
-            <Contador />
+            <Contador correcto={correcto} />
             {loading ? (
                 <div className='loading-container'><p>Cargando...</p></div>
             ) : (

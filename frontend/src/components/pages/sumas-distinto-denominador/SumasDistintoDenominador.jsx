@@ -1,7 +1,7 @@
 import { useState } from "react";
 import SumasDistintoDenominador1 from "./SumasDistintoDenominador1";
 import SumasDistintoDenominador2 from "./SumasDistintoDenominador2";
-import './SumasDistintoDenominador.css';
+//import './SumasDistintoDenominador.css';
 
 
 const SumasDistintoDenominador = () => {

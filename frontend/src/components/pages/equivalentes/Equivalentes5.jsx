@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toggleSound } from '../../../redux/actions/soundActions';
 import { aumentarContador, decrementarContador } from "../../../redux/actions/contadorActions";
 import Contador from '../contador/Contador';
-import './Equivalentes5.css';
+//import './Equivalentes5.css';
 
 const Equivalente5 = () => {
     const [playSoundOk] = useSound(audioOk);
@@ -15,6 +15,7 @@ const Equivalente5 = () => {
     const [opciones, setOpciones] = useState([]);
     const [tipoEjercicio, setTipoEjercicio] = useState('');
     const [loading, setLoading] = useState(true);
+    const [correcto, setCorrecto] = useState(null); // Añadir estado para manejar la respuesta correcta o incorrecta
 
     const dispatch = useDispatch();
     const sonido = useSelector(state => state.sound.sonido);
@@ -33,6 +34,7 @@ const Equivalente5 = () => {
             console.log("Verificando fracciones:");
             console.log(opcionesBarajadas);
             setLoading(false);
+            setCorrecto(null); // Restablecer el estado de respuesta
         } catch (error) {
             console.error('Error al generar la fracción:', error);
             setLoading(false);
@@ -62,24 +64,31 @@ const Equivalente5 = () => {
     const handleClick = (id) => {
         console.log(`El id es ${id}`);
 
-        const correcto = (tipoEjercicio === 'equivalentes' && id === 1) || (tipoEjercicio === 'generarFraccion' && id === 4);
-        if (correcto) {
+        const esCorrecto = (tipoEjercicio === 'equivalentes' && id === 1) || (tipoEjercicio === 'generarFraccion' && id === 4);
+        if (esCorrecto) {
             if (sonido) {
                 dispatch(aumentarContador());
                 playSoundOk();
             }
-            generarNumerosFraccion();
+            setCorrecto(true);
+            setTimeout(() => {
+                generarNumerosFraccion();
+            }, 1000);
         } else {
             if (sonido) {
                 dispatch(decrementarContador());
                 playSoundWrong();
             }
+            setCorrecto(false);
+            setTimeout(() => {
+                setCorrecto(null);
+            }, 1000);
         }
     };
 
     return (
         <div className='div-renderizador'>
-            <Contador />
+            <Contador correcto={correcto} />
             {loading ? (
                 <div className='loading-container'><p>Cargando...</p></div>
             ) : (

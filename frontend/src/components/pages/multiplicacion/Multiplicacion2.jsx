@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toggleSound } from '../../../redux/actions/soundActions';
 import { aumentarContador, decrementarContador } from "../../../redux/actions/contadorActions";
 import Contador from '../contador/Contador';
-import './Multiplicacion2.css';
+//import './Multiplicacion2.css';
 
 const Multiplicacion2 = () => {
     const [playSoundOk] = useSound(audioOk);
@@ -22,6 +22,7 @@ const Multiplicacion2 = () => {
     const [correctClass, setCorrectClass] = useState('');
     const [incorrectClass, setIncorrectClass] = useState('');
     const [loading, setLoading] = useState(true);
+    const [correcto, setCorrecto] = useState(null); // Añadir estado para manejar la respuesta correcta o incorrecta
 
     const dispatch = useDispatch();
     const sonido = useSelector(state => state.sound.sonido);
@@ -33,6 +34,7 @@ const Multiplicacion2 = () => {
             const data = await response.json();
             setFracciones(data.fracciones);
             setResultado(data.resultado);
+            setCorrecto(null); // Restablecer el estado de respuesta
             setLoading(false);
             console.log(data);
         } catch (error) {
@@ -101,22 +103,28 @@ const Multiplicacion2 = () => {
             if (sonido) {
                 playSoundOk();
                 dispatch(aumentarContador());
+                setCorrecto(true); // Establecer correcto a true
             }
-            generarMultiplicaciones();
             setInputNumerador('');
             setInputDenominador('');
+            setTimeout(() => setCorrecto(null), 1000); // Restablecer el estado después de 1 segundo
+            generarMultiplicaciones();
         } else {
             if (sonido) {
                 playSoundWrong();
                 dispatch(decrementarContador());
+                setCorrecto(false); // Establecer correcto a false
             }
+            setInputNumerador('');
+            setInputDenominador('');
+            setTimeout(() => setCorrecto(null), 1000); // Restablecer el estado después de 1 segundo
         }
     };
 
     return (
         <div>
             <div className='div-renderizador'>
-                <Contador />
+                <Contador correcto={correcto} />
                 {loading ? (
                     <div className='loading-container'><p>Cargando...</p></div>
                 ) : (

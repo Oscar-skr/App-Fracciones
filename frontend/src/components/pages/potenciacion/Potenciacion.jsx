@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Potenciacion1 from "./Potenciacion1";
 import Potenciacion2 from "./Potenciacion2";
-import './Potenciacion.css';
+//import './Potenciacion.css';
 
 
 const Potenciacion = () => {

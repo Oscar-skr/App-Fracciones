@@ -1,20 +1,16 @@
-.graficos-css {
+.graficos-css { /*Renderiza todo*/
     width: 80vw !important; /* Aumenta el ancho máximo del contenedor */
     height: 80vh; /* Aumenta la altura mínima */
     margin: 20px auto;
     padding: 20px;
     background: white;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     display: flex;
-    flex-direction: column; /* Alinea los elementos en una columna */
+    flex-direction: row; /* Alinea los elementos en una columna */
     align-items: center ; /* Centrar verticalmente */
     position: relative;
     justify-content: center;
-
-}
-
-.contenedorComponente{
 
 }
 
@@ -34,14 +30,15 @@
     position: absolute; /* Posiciona los botones absolutamente */
     top: 50%;
     transform: translateY(-50%); /* Centra verticalmente los botones */
+    -webkit-tap-highlight-color: transparent; /* Elimina el resaltado en dispositivos móviles */
 }
 
 .buttonleft {
-    left: 10px; /* Ajusta según sea necesario */
+    left: 5px; /* Ajusta según sea necesario */
 }
 
 .buttonright {
-    right: 10px; /* Ajusta según sea necesario */
+    right: 5px; /* Ajusta según sea necesario */
 }
 
 .buttonleft:hover, .buttonright:hover {
@@ -62,34 +59,6 @@
     flex: 0 0 50px; /* Asegura que el contenedor tenga el mismo ancho que el botón */
 }
 
-.divContenedorCentral {
-    flex-grow: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: calc(100% - 100px); /* Asegura que el contenedor central sea flexible y ocupe el espacio restante */
-    padding: 20px; /* Añade algo de padding para separación interna */
-    box-sizing: border-box; /* Incluye padding en el ancho total */
-    height: 100%; /* Asegura que el contenedor central ocupe toda la altura disponible */
-}
-.buttonleft, .buttonright {
-    background-color: transparent;
-    border: 2px solid #007bff;
-    color: #007bff;
-    font-size: 24px;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-    position: absolute; /* Posiciona los botones absolutamente */
-    top: 50%;
-    transform: translateY(-50%); /* Centra verticalmente los botones */
-    -webkit-tap-highlight-color: transparent; /* Elimina el resaltado en dispositivos móviles */
-}
 
 @media (max-width: 1110px) {
     .graficos-css {
@@ -98,11 +67,13 @@
         margin: 20px auto;
         padding: 20px;
         background: white;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        box-shadow: none;
         align-items: center; /* Centrar verticalmente */
         display: flex;
-        flex-direction: row !important;
+        border: none;
+        flex-direction: row;
+        border: 1px solid red;
+
     }
 
     .buttonleft, .buttonright {
@@ -131,12 +102,9 @@
         height: 50px; /* Fija la altura de los contenedores de los botones */
     }
 
-    .divContenedorCentral {
-        display: none; /* Oculta el contenedor central en vista móvil */
-    }
-
     .buttonleft:hover, .buttonright:hover {
         background-color: transparent;
         color: #007bff;
     }
+
 }

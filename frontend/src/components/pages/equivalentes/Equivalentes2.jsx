@@ -4,9 +4,9 @@ import audioWrong from '../../../assets/sonidos/wrong.wav';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleSound } from '../../../redux/actions/soundActions';
-import './Equivalentes2.css';
 import { aumentarContador, decrementarContador } from "../../../redux/actions/contadorActions";
 import Contador from '../contador/Contador';
+import './Equivalentes2.css';
 
 const Equivalentes2 = () => {
     const [playSoundOk] = useSound(audioOk);
@@ -15,6 +15,7 @@ const Equivalentes2 = () => {
     const [divs, setDivs] = useState([]);
     const [selectedIds, setSelectedIds] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [correcto, setCorrecto] = useState(null); // Añadir estado para manejar la respuesta correcta o incorrecta
 
     const dispatch = useDispatch();
     const sonido = useSelector(state => state.sound.sonido);
@@ -27,6 +28,7 @@ const Equivalentes2 = () => {
             setFracciones(data);
             setSelectedIds([]);
             setDivs([]); // Limpiar los divs antes de generar nuevas fracciones
+            setCorrecto(null); // Restablecer el estado de respuesta
             setLoading(false);
             console.log(data);
         } catch (error) {
@@ -68,6 +70,7 @@ const Equivalentes2 = () => {
                     dispatch(aumentarContador());
                     playSoundOk();
                 }  // Reproduce el sonido correcto
+                setCorrecto(true);
                 setTimeout(() => {
                     generarNumerosFraccion();
                 }, 1000);
@@ -76,7 +79,9 @@ const Equivalentes2 = () => {
                     dispatch(decrementarContador());
                     playSoundWrong();
                 }  // Reproduce el sonido incorrecto
+                setCorrecto(false);
                 setTimeout(() => {
+                    setCorrecto(null);
                     setSelectedIds([]);
                 }, 1000);
             }
@@ -89,7 +94,7 @@ const Equivalentes2 = () => {
 
     return (
         <div className='div-renderizador'>
-            <Contador />
+            <Contador correcto={correcto} />
             {loading ? (
                 <div className='loading-container'><p>Cargando...</p></div>
             ) : (

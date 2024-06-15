@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import './Graficos2.css';
 import useSound from 'use-sound';
 import audioOk from '../../../assets/sonidos/ok.mp3';
 import audioWrong from '../../../assets/sonidos/wrong.wav';
 import { useDispatch, useSelector } from "react-redux";
-import { toggleSound } from "../../../redux/actions/soundActions";
-import { aumentarContador, decrementarContador } from "../../../redux/actions/contadorActions";
+import { toggleSound } from '../../../redux/actions/soundActions';
+import { aumentarContador, decrementarContador } from '../../../redux/actions/contadorActions';
 import Contador from '../contador/Contador';
+import './Graficos2.css';
 
 const Graficos2 = () => {
     const [playSoundOk] = useSound(audioOk);
@@ -17,6 +17,7 @@ const Graficos2 = () => {
     const [variable2, setVariable2] = useState(null);
     const [variable3, setVariable3] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [correcto, setCorrecto] = useState(null); // Añadir estado para manejar la respuesta correcta o incorrecta
 
     const dispatch = useDispatch();
     const sonido = useSelector(state => state.sound.sonido);
@@ -27,7 +28,7 @@ const Graficos2 = () => {
             const response = await fetch('https://fractionsapp-3.onrender.com/graficos/generarFraccion?cantidad=3');
             const data = await response.json();
             setFracciones(data);
-            console.log(data);
+            setCorrecto(null); // Restablecer el estado de respuesta
             setLoading(false); // Terminar carga
         } catch (error) {
             console.error('Error al generar la fracción:', error);
@@ -63,7 +64,6 @@ const Graficos2 = () => {
 
     const asignarAleatorio = () => {
         const numerosAleatorios = shuffleArray([0, 1, 2]);
-        console.log("Array aleatoria:", numerosAleatorios);
         setVariable1(numerosAleatorios[0]);
         setVariable2(numerosAleatorios[1]);
         setVariable3(numerosAleatorios[2]);
@@ -82,17 +82,24 @@ const Graficos2 = () => {
                     dispatch(aumentarContador());
                     playSoundOk();
                 }
-                generarNumerosFraccion();
+                setCorrecto(true);
+                setTimeout(() => {
+                    generarNumerosFraccion();
+                }, 1000);
             } else {
                 if (sonido) {
                     dispatch(decrementarContador());
                     playSoundWrong();
                 }
+                setCorrecto(false);
+                setTimeout(() => {
+                    setCorrecto(null);
+                }, 1000);
             }
         };
 
         return (
-            <div className='graficoFraccion' id={props.correcto ? "correcto" : null} onClick={handleClick}>
+            <div className='graficoFraccion' onClick={handleClick}>
                 {props.children}
             </div>
         );
@@ -104,7 +111,7 @@ const Graficos2 = () => {
 
     return (
         <div className='div-renderizador'>
-            <Contador />
+            <Contador correcto={correcto} />
             {loading ? (
                 <div className="loading-container">
                     <p>Cargando...</p>
@@ -130,7 +137,7 @@ const Graficos2 = () => {
                             {divs[variable3]}
                         </DivClickeable>
                     </div>
-                    <div>
+                    <div className="divContenedorBotones">
                         <button onClick={handleSonido} className='boton-app'>{sonido ? 'Sonido on' : 'Sonido off'}</button>
                         <button onClick={generarNumerosFraccion} className='boton-app'>Generar otra</button>
                     </div>

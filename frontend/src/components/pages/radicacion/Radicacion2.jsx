@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toggleSound } from '../../../redux/actions/soundActions';
 import { aumentarContador, decrementarContador } from "../../../redux/actions/contadorActions";
 import Contador from '../contador/Contador';
-import './Radicacion2.css';
+//import './Radicacion2.css';
 
 const Radicacion2 = () => {
     const [playSoundOk] = useSound(audioOk);
@@ -16,24 +16,26 @@ const Radicacion2 = () => {
     const [resultado, setResultado] = useState(null);
     const [inputNumerador, setInputNumerador] = useState('');
     const [inputDenominador, setInputDenominador] = useState('');
-    const [loading, setLoading] = useState(true); // Estado para indicar si está cargando
+    const [loading, setLoading] = useState(true);
+    const [correcto, setCorrecto] = useState(null); // Añadir estado para manejar la respuesta correcta o incorrecta
 
     const dispatch = useDispatch();
     const sonido = useSelector(state => state.sound.sonido);
 
     const generarRadicacion = async () => {
         try {
-            setLoading(true); // Iniciar carga
+            setLoading(true);
             const response = await fetch(`https://fractionsapp-3.onrender.com/potenciacion/radicacion`);
             const data = await response.json();
             setFraccion(data.fraccion);
             setIndice(data.indice);
             setResultado(data.resultado);
-            setLoading(false); // Terminar carga
+            setCorrecto(null); // Restablecer el estado de respuesta
+            setLoading(false);
             console.log(data);
         } catch (error) {
             console.error('Error al generar las fracciones:', error);
-            setLoading(false); // Terminar carga incluso si hay un error
+            setLoading(false);
         }
     };
 
@@ -48,28 +50,36 @@ const Radicacion2 = () => {
     const handleCheck = () => {
         const numInput = parseFloat(inputNumerador);
         const denInput = parseFloat(inputDenominador);
-        const correcto = (numInput / denInput) === resultado.decimal;
+        const esCorrecto = (numInput / denInput) === resultado.decimal;
 
-        if (correcto) {
+        if (esCorrecto) {
             if (sonido) {
                 playSoundOk();
                 dispatch(aumentarContador());
+                setCorrecto(true);
+                setTimeout(() => {
+                    setCorrecto(null);
+                    generarRadicacion();
+                }, 1000); // Restablecer el estado después de 1 segundo y generar nuevas fracciones
             }
-            generarRadicacion();
-            setInputNumerador('');
-            setInputDenominador('');
         } else {
             if (sonido) {
                 playSoundWrong();
                 dispatch(decrementarContador());
+                setCorrecto(false);
+                setTimeout(() => {
+                    setCorrecto(null);
+                }, 1000); // Restablecer el estado después de 1 segundo
             }
         }
+        setInputNumerador('');
+        setInputDenominador('');
     };
 
     return (
         <div>
             <div className='div-renderizador'>
-                <Contador />
+                <Contador correcto={correcto} />
                 {loading ? (
                     <div className='loading-container'><p>Cargando...</p></div>
                 ) : (

@@ -1,6 +1,6 @@
-import './RepasoGraficos.css';
 import imageDefault from '../../../assets/Graficos1default.svg';
 import imageMobile from '../../../assets/Graficos1mobile.svg';
+import './RepasoGraficos.css';
 
 const RepasoGraficos = () => {
     return (

@@ -1,78 +1,44 @@
-.contenedorOperaciones{
-    align-items: center;
-}
-
-
-.operacionsid {
-    width: 100%; /* Asegura que el contenedor de la operación ocupe el 100% del ancho */
-    font-size: 30px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-
-}
-.fraccion-signo{
-    font-size: 30px;
-}
-.resultado p{
-    margin-right: 10px;
-
-}
-
-.fraccion-span{
-    width: 30px;
-}
-.fraccion-sid{
-    font-size: 30px;
+.div-renderizador-operaciones {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
+    width: 70vw;
+    height: 70vh;
+    padding: 0px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box; /* Asegura que el padding se incluya en el ancho total */
+    overflow: hidden;
+  }
+
+.contenedorOperaciones{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
     align-items: center;
 }
 
-.fraccion-sid p{
-    margin-bottom: 0px;
-    justify-content: center;
+.operacionsid{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    height: 150px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 20px;
 }
 
-.resultado p{
-    margin-bottom: 0px;
-    justify-content: center;
+.resultado{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
-
-@media (max-width: 1100px) {
-    .fraccion input {
-        width: 100%;
-        max-width: 50px;
-        min-width: 50px;
-        font-size: 16px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        text-align: center;
-        margin: 5px 0;
-        box-sizing: border-box;
-        margin-right: 15px;
-    }
-    
-    .contenedorOperaciones{
-        font-size: 13px;
-        justify-content: center;
-     }
-
-     .operacionsid{
-        justify-content: baseline;
-
-     }
-
-     .resultado{
-        max-width: 60px;
-    
-    }
-    .fraccion-sid{
-        font-size: 25px;
-    }
-    .fraccion-span{
-        width: 25px;
-    }
-}
