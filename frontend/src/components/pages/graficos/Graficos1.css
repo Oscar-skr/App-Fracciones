@@ -10,7 +10,8 @@
   border-radius: 8px;
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
   box-sizing: border-box; /* Asegura que el padding se incluya en el ancho total */
- overflow: hidden;
+  overflow: hidden;
+
 }
 
 
@@ -130,4 +131,8 @@ h3 {
   color: #007bff;
 }
 
-
+@media (max-width: 650px){
+  .div-renderizador {
+    height: 90vh;
+  }
+}
