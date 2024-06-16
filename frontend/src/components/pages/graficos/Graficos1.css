@@ -90,6 +90,7 @@ h3 {
   align-items: center;
   flex-direction: column;
   min-width: 50vw;
+  margin-bottom: 5px;
 }
 
 
@@ -131,57 +132,3 @@ h3 {
 }
 
 
-
-/*
-@media (max-width: 1100px) {
-  .graficoFraccion {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 90vw;
-    min-height: 2vh;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    overflow: hidden;
-    margin-bottom: 20px;
-   }
-
-  .fraccion {
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .fraccion input {
-    width: 100%;
-    max-width: 45px;
-    margin: 0 5px;
-  }
-
-  .fraccion .fraccion-span {
-    width: 10px;
-    height: auto;
-    background-color: transparent;
-    font-size: 24px;
-    text-align: center;
-    margin: 0 5px;
-    background-color: #ddd;
-  }
-
-  .boton-app{
-    padding: 3px;
-    margin: 1px 0;
-  }
-
-  .divContenedorBotones{
-    max-height: 40vh;
-    justify-content: space-around;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .div-renderizador {
-    height: 80vh !important;
-  }
-}

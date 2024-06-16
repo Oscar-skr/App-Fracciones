@@ -4,9 +4,9 @@ import audioOk from '../../../assets/sonidos/ok.mp3';
 import audioWrong from '../../../assets/sonidos/wrong.wav';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleSound } from '../../../redux/actions/soundActions';
-import { aumentarContador, decrementarContador } from "../../../redux/actions/contadorActions";
+import { aumentarContador, decrementarContador } from '../../../redux/actions/contadorActions';
 import Contador from '../contador/Contador';
-//import './Potenciacion2.css';
+import './Potenciacion2.css';
 
 const Potenciacion2 = () => {
     const [playSoundOk] = useSound(audioOk);
@@ -80,16 +80,16 @@ const Potenciacion2 = () => {
 
     return (
         <div>
-            <div className='div-renderizador'>
+            <div className='div-renderizador-operaciones'>
                 <Contador correcto={correcto} />
                 {loading ? (
                     <div className='loading-container'><p>Cargando...</p></div>
                 ) : (
                     <>
                         <h2>Potenciación de Fracciones:</h2>
-                        <div className="operacion">
+                        <div className="operacionsid">
                             {tipo === 0 ? (
-                                <>
+                                <div className='parentesis'>
                                     <div className="parentezco">(</div>
                                     <div className="fraccion">
                                         <p>{fraccion.numerador}</p>
@@ -98,7 +98,7 @@ const Potenciacion2 = () => {
                                     </div>
                                     <div className="parentezco">)</div>
                                     <div className="exponente">{exponente}</div>
-                                </>
+                                </div>
                             ) : (
                                 <>
                                     <div className="fraccion">
@@ -111,10 +111,10 @@ const Potenciacion2 = () => {
                                     </div>
                                 </>
                             )}
+                            <div><p className='fraccion-signo'>=</p></div>
                             <div className="resultado">
-                                <p>=</p>
                                 <div className="introducir-datos">
-                                    <div className="fraccion">
+                                    <div className="fracciong">
                                         <input 
                                             type="text" 
                                             inputMode="numeric" 
@@ -139,7 +139,7 @@ const Potenciacion2 = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className='contenedor-Botones'>
+                        <div className='divContenedorBotones'>
                             <button onClick={handleSonido} className='boton-app'>{sonido ? 'Sonido on' : 'Sonido off'}</button>
                             <button onClick={handleCheck} className='boton-app'>Chequear</button>
                             <button onClick={generarPotenciacion} className='boton-app'>Generar otra</button>

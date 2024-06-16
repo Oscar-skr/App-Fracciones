@@ -4,9 +4,9 @@ import audioOk from '../../../assets/sonidos/ok.mp3';
 import audioWrong from '../../../assets/sonidos/wrong.wav';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleSound } from '../../../redux/actions/soundActions';
-import { aumentarContador, decrementarContador } from "../../../redux/actions/contadorActions";
+import { aumentarContador, decrementarContador } from '../../../redux/actions/contadorActions';
 import Contador from '../contador/Contador';
-//import './Radicacion2.css';
+import './Radicacion2.css';
 
 const Radicacion2 = () => {
     const [playSoundOk] = useSound(audioOk);
@@ -78,14 +78,14 @@ const Radicacion2 = () => {
 
     return (
         <div>
-            <div className='div-renderizador'>
+            <div className='div-renderizador-operaciones'>
                 <Contador correcto={correcto} />
                 {loading ? (
                     <div className='loading-container'><p>Cargando...</p></div>
                 ) : (
                     <>
                         <h2>Radicación de Fracciones:</h2>
-                        <div className="operacion">
+                        <div className="operacionsid">
                             <div className="radical-container">
                                 <div className="indice-container">
                                     <div className="indice-radicacion">{indice}</div>
@@ -100,10 +100,10 @@ const Radicacion2 = () => {
                                     </div>
                                 </div>
                             </div>
+                            <div className='fraccion-signo'><p>=</p></div>
                             <div className="resultado">
-                                <p>=</p>
                                 <div className="introducir-datos">
-                                    <div className="fraccion">
+                                    <div className="fracciong">
                                         <input 
                                             type="text" 
                                             inputMode="numeric" 
@@ -128,7 +128,7 @@ const Radicacion2 = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className='contenedor-Botones'>
+                        <div className='divContenedorBotones'>
                             <button onClick={handleSonido} className='boton-app'>{sonido ? 'Sonido on' : 'Sonido off'}</button>
                             <button onClick={handleCheck} className='boton-app'>Chequear</button>
                             <button onClick={generarRadicacion} className='boton-app'>Generar otra</button>

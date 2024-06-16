@@ -23,7 +23,7 @@ const Contador = ({ correcto }) => {
     };
 
     return (
-        <div onClick={toggleVisibility}>
+        <div onClick={toggleVisibility} className='divContador'>
             {visible ? (
                 <div className={`flip-card ${effectClass}`}>
                     <div className="flip-card-inner">

@@ -38,34 +38,6 @@
     transition: background-color 0.1s ease;
 }
 
-.fraccion {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-right: 10px;
-}
-
-.fraccion-span {
-    margin: 0 5px;
-}
-
-.fraccion-signo {
-    margin: 0 5px;
-}
-
-.inputFraccion {
-    width: 60px;
-    text-align: center;
-}
-
-.contenedorOperaciones {
-    display: flex;
-    flex-direction: row !important;
-}
-
-.contenedorOperaciones div{
-
-}
 
 @media (max-width: 1100px) {
     .fraccion {

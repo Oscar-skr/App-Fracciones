@@ -31,7 +31,7 @@ const SumasDistintoDenominador2 = () => {
             const data = await response.json();
             setFracciones(data.fraccionesOriginales);
             setResultado(data.resultadoDecimal);
-            setSignos(data.operaciones.map(item => item.operacion));
+            setSignos(data.operaciones.map(item => item));
             setEquivalentes(data.fraccionesEquivalentes);
             setLoading(false);
             setCorrecto(null); // Restablecer el estado de respuesta
@@ -151,27 +151,31 @@ const SumasDistintoDenominador2 = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className='contenedor-pistas fraccion'>
+                        <div className='contenedor-pistas'>
                             {mostrarPistas && equivalentes.map((fila, indexFraccion) => (
-                                <div key={indexFraccion} className='contenedorOperaciones'>
+                                <div key={indexFraccion} className='contenedorOperacionesPistas'>
                                     {fila.map((equivalente, i) => (
-                                        <div className='contenedorOperacionesOrder' key={i} onClick={() => handleFraccionClick(indexFraccion, equivalente)}>
-                                            <div className="fracciong">
-                                                <p className='parrafoFraccion'>{equivalente.numerador}</p>
-                                                <p className="fraccion-span"></p>
-                                                <p className='parrafoFraccion'>{equivalente.denominador}</p>
+                                        <React.Fragment key={i} >
+                                            <div className='contenedorOperacionesOrder' onClick={() => handleFraccionClick(indexFraccion, equivalente)}>
+                                                <div className="fraccion-pistas">
+                                                    <p className='parrafoFraccionNum'>{equivalente.numerador}</p>
+                                                    <p className="fraccion-span-pistas"></p>
+                                                    <p className='parrafoFraccionDen'>{equivalente.denominador}</p>
+                                                </div>
                                             </div>
-                                            <div>{i < fila.length - 1 && <span className="fraccion-signo-dd">=</span>}</div>
-                                        </div>
+                                            {i < fila.length - 1 && (
+                                                <div className="fraccion-signo-dd">=</div>
+                                            )}
+                                        </React.Fragment>
                                     ))}
                                 </div>
                             ))}
                         </div>
-                        <div className='divContenedorBotones'>
-                            <button onClick={handleSonido} className='boton-app'>{sonido ? 'Sonido on' : 'Sonido off'}</button>
-                            <button onClick={handleClick} className='boton-app'>Chequear</button>
-                            <button onClick={generarNumerosFraccion} className='boton-app'>Generar otra</button>
-                            <button onClick={handlePistasClick} className='boton-app'>Pistas</button>
+                        <div className='divContenedorBotonesPistas'>
+                            <button onClick={handleSonido} className='boton-app-pistas'>{sonido ? 'Sonido on' : 'Sonido off'}</button>
+                            <button onClick={handleClick} className='boton-app-pistas'>Chequear</button>
+                            <button onClick={generarNumerosFraccion} className='boton-app-pistas'>Generar otra</button>
+                            <button onClick={handlePistasClick} className='boton-app-pistas'>Pistas</button>
                         </div>
                     </>
                 )}

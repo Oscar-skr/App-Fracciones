@@ -140,7 +140,7 @@ const SumasIgualDenominador2 = () => {
                             </div>
                         </div>
                     </div>
-                    <div className='divContenedorBotones'>
+                    <div className='contenedor-Botones'>
                         <button onClick={handleSonido} className='boton-app'>{sonido ? 'Sonido on' : 'Sonido off'}</button>
                         <button onClick={handleClick} className='boton-app'>Chequear</button>
                         <button onClick={generarNumerosFraccion} className='boton-app'>Generar otra</button>

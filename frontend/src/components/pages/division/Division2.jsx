@@ -151,46 +151,49 @@ const Division2 = () => {
 
     return (
         <div>
-            <div className='div-renderizador'>
+            <div className='div-renderizador-operaciones'>
                 <Contador correcto={correcto} />
                 {loading ? (
                     <div className='loading-container'><p>Cargando...</p></div>
                 ) : (
                     <>
                         <h2>Divide las siguientes fracciones:</h2>
-                        <div className="operacion div1 div2">
+                        <div className="operacionsid">
                             {fracciones.map((fraccion, index) => (
-                                <div className="contenedorOperaciones" key={index}>
-                                    <div>
-                                        <div 
-                                            className={`fraccion ${selectedNum?.index === index && selectedNum.type === 'numerador' ? highlightClass : ''}`} 
-                                            onClick={() => handleFraccionClick('numerador', fraccion, index)}
-                                            style={selectedNum?.index === index && selectedNum.value === fraccion.numerador ? { backgroundColor: 'lightblue' } : {}}
-                                        >
-                                            <p>{fraccion.numerador}</p>
+                                <React.Fragment key={index}>
+                                    <div className="contenedorOperaciones">
+                                        <div className="fraccion">
+                                            <div 
+                                                className={`numerador ${selectedNum?.index === index && selectedNum.type === 'numerador' ? highlightClass : ''}`} 
+                                                onClick={() => handleFraccionClick('numerador', fraccion, index)}
+                                                style={selectedNum?.index === index && selectedNum.value === fraccion.numerador ? { backgroundColor: 'lightblue' } : {}}
+                                            >
+                                                <p>{fraccion.numerador}</p>
+                                            </div>
                                             <p className="fraccion-span"></p>
-                                        </div>
-                                        <div 
-                                            className={`fraccion ${selectedDen?.index === index && selectedDen.type === 'denominador' ? highlightClass : ''}`} 
-                                            onClick={() => handleFraccionClick('denominador', fraccion, index)}
-                                            style={selectedDen?.index === index && selectedDen.value === fraccion.denominador ? { backgroundColor: 'lightblue' } : {}}
-                                        >
-                                            <p>{fraccion.denominador}</p>
+                                            <div 
+                                                className={`denominador ${selectedDen?.index === index && selectedDen.type === 'denominador' ? highlightClass : ''}`} 
+                                                onClick={() => handleFraccionClick('denominador', fraccion, index)}
+                                                style={selectedDen?.index === index && selectedDen.value === fraccion.denominador ? { backgroundColor: 'lightblue' } : {}}
+                                            >
+                                                <p>{fraccion.denominador}</p>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div>
-                                        {index < fracciones.length - 1 && (
-                                            <span className='fraccion-signo' onClick={handleInvertir}>
-                                                {isInverted ? '×' : '÷'}
-                                            </span>
-                                        )}
-                                    </div>
-                                </div>
+                                    {index < fracciones.length - 1 ? (
+                                        <div className='fraccion-signo' onClick={handleInvertir}>
+                                            {isInverted ? '×' : '÷'}
+                                        </div>
+                                    ) : (
+                                        <div className='fraccion-signo'>
+                                            =
+                                        </div>
+                                    )}
+                                </React.Fragment>
                             ))}
                             <div className="resultado">
-                                <p>=</p>
                                 <div className="introducir-datos">
-                                    <div className="fraccion">
+                                    <div className="fracciong">
                                         <input 
                                             type="text" 
                                             inputMode="numeric" 
@@ -224,7 +227,7 @@ const Division2 = () => {
                                 ))}
                             </div>
                         )}
-                        <div className='contenedor-Botones'>
+                        <div className='divContenedorBotones'>
                             <button onClick={handleSonido} className='boton-app'>{sonido ? 'Sonido on' : 'Sonido off'}</button>
                             <button onClick={handleCheck} className='boton-app'>Chequear</button>
                             <button onClick={generarDivisiones} className='boton-app'>Generar otra</button>

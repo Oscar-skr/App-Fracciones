@@ -1,6 +1,6 @@
 import SumasDistintoDenominadorDefault from '../../../assets/SumaDistintoDenominadorDefault.svg';
 import SumasDistintoDenominadorMobile from '../../../assets/SumaDistintoDenominadorMobile.svg';
-//import './SumasDistintoDenominador1.css';
+import './SumasDistintoDenominador1.css';
 
 
 const SumasDistintoDenominador1 = () => {

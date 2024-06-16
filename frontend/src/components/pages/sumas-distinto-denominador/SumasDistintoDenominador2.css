@@ -1,27 +1,93 @@
 
 .contenedor-pistas {
-  
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    max-width: 50vw;
+    padding: none;
     overflow-x: auto !important; /* Activar deslizador horizontal */
     white-space: nowrap !important;
     margin-top: 0px !important;
     width: 100% !important; /* Asegura que el contenedor de las pistas ocupe el 100% del ancho */
-    border: 1px solid red;
-    padding: ;
-    
 }
 
-.fila-equivalentes {
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: center !important;
-    margin-top: 10px !important;
-
+.fraccion-span-pistas{
+    border: 1px solid black;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
+
+.parrafoFraccionNum{
+    border-bottom: 0px;
+}
+
+
+
 
 .contenedorOperacionesOrder{
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: left;
+
 }
 
+
+.parrafoFraccionNum{
+    margin-bottom: 0px;
+}
+
+.parrafoFraccionDen{
+    margin-top: 0px;
+}
+
+.divContenedorBotonesPistas{
+    display: flex;
+    flex-direction: row;
+
+}
+
+.boton-app-pistas{
+    width: 100%;
+    max-width: 200px;
+    min-height: 5vh;
+    font-size: 16px;
+    color: #fff;
+    background-color: #2196F3;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+
+    margin-left: 1vw;
+}
+
+.contenedorOperacionesPistas{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    align-items: center;
+    max-width: 50vw;
+}
+
+.fraccion-signo-dd{
+    margin-top: -10px;
+}
+
+
+@media (max-width: 650px) {
+    .boton-app-pistas{
+        width: 100%;
+        max-width: 200px;
+        min-height: 5vh;
+        font-size: 10px;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+        margin-bottom: 1vh;
+        margin-left: 1vw;
+    }
+}

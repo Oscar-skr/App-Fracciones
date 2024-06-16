@@ -1,12 +1,13 @@
+import React, { useState, useEffect } from 'react';
 import useSound from 'use-sound';
 import audioOk from '../../../assets/sonidos/ok.mp3';
 import audioWrong from '../../../assets/sonidos/wrong.wav';
-import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleSound } from '../../../redux/actions/soundActions';
-import { aumentarContador, decrementarContador } from "../../../redux/actions/contadorActions";
+import { aumentarContador, decrementarContador } from '../../../redux/actions/contadorActions';
 import Contador from '../contador/Contador';
-//import './Multiplicacion2.css';
+import './Multiplicacion2.css';
+
 
 const Multiplicacion2 = () => {
     const [playSoundOk] = useSound(audioOk);
@@ -60,6 +61,8 @@ const Multiplicacion2 = () => {
 
         if (selectedNum && selectedDen) {
             setDivisoresVisibles(true);
+        } else {
+            setDivisoresVisibles(false);
         }
     };
 
@@ -98,7 +101,7 @@ const Multiplicacion2 = () => {
         const numInput = parseFloat(inputNumerador);
         const denInput = parseFloat(inputDenominador);
         const correcto = numInput / denInput === resultado.decimal;
-        
+
         if (correcto) {
             if (sonido) {
                 playSoundOk();
@@ -123,44 +126,49 @@ const Multiplicacion2 = () => {
 
     return (
         <div>
-            <div className='div-renderizador'>
+            <div className='div-renderizador-operaciones'>
                 <Contador correcto={correcto} />
                 {loading ? (
                     <div className='loading-container'><p>Cargando...</p></div>
                 ) : (
                     <>
                         <h2>Multiplica las siguientes fracciones:</h2>
-                        <div className="operacion div1 div2">
+                        <div className="operacionsid">
                             {fracciones.map((fraccion, index) => (
-                                <div className="contenedorOperaciones" key={index}>
-                                    <div>
-                                        <div 
-                                            className={`fraccion-sid ${selectedNum?.index === index ? highlightClass : ''} ${selectedNum?.index === index ? correctClass : ''} ${selectedNum?.index === index ? incorrectClass : ''}`} 
-                                            onClick={() => handleFraccionClick('numerador', fraccion, index)}
-                                            style={selectedNum?.index === index && selectedNum.value === fraccion.numerador ? { backgroundColor: 'lightblue' } : {}}
-                                        >
-                                            <p>{fraccion.numerador}</p>
+                                <React.Fragment key={index}>
+                                    <div className="contenedorOperaciones">
+                                        <div className="fraccion">
+                                            <div 
+                                                className={`numerador ${selectedNum?.index === index ? highlightClass : ''} ${selectedNum?.index === index ? correctClass : ''} ${selectedNum?.index === index ? incorrectClass : ''}`} 
+                                                onClick={() => handleFraccionClick('numerador', fraccion, index)}
+                                                style={selectedNum?.index === index && selectedNum.value === fraccion.numerador ? { backgroundColor: 'lightblue' } : {}}
+                                            >
+                                                <p>{fraccion.numerador}</p>
+                                            </div>
                                             <p className="fraccion-span"></p>
-                                        </div>
-                                        <div 
-                                            className={`fraccion-sid ${selectedDen?.index === index ? highlightClass : ''} ${selectedDen?.index === index ? correctClass : ''} ${selectedDen?.index === index ? incorrectClass : ''}`} 
-                                            onClick={() => handleFraccionClick('denominador', fraccion, index)}
-                                            style={selectedDen?.index === index && selectedDen.value === fraccion.denominador ? { backgroundColor: 'lightblue' } : {}}
-                                        >
-                                            <p>{fraccion.denominador}</p>
+                                            <div 
+                                                className={`denominador ${selectedDen?.index === index ? highlightClass : ''} ${selectedDen?.index === index ? correctClass : ''} ${selectedDen?.index === index ? incorrectClass : ''}`} 
+                                                onClick={() => handleFraccionClick('denominador', fraccion, index)}
+                                                style={selectedDen?.index === index && selectedDen.value === fraccion.denominador ? { backgroundColor: 'lightblue' } : {}}
+                                            >
+                                                <p>{fraccion.denominador}</p>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div>
-                                        {index < fracciones.length - 1 && (
-                                            <span className='fraccion-signo'>×</span>
-                                        )}
-                                    </div>
-                                </div>
+                                    {index < fracciones.length - 1 ? (
+                                        <div className='fraccion-signo'>
+                                            ×
+                                        </div>
+                                    ) : (
+                                        <div className='fraccion-signo'>
+                                            =
+                                        </div>
+                                    )}
+                                </React.Fragment>
                             ))}
                             <div className="resultado">
-                                <p>=</p>
                                 <div className="introducir-datos">
-                                    <div className="fraccion">
+                                    <div className="fracciong">
                                         <input 
                                             type="text" 
                                             inputMode="numeric" 
@@ -194,7 +202,7 @@ const Multiplicacion2 = () => {
                                 ))}
                             </div>
                         )}
-                        <div className='contenedor-Botones'>
+                        <div className='divContenedorBotones'>
                             <button onClick={handleSonido} className='boton-app'>{sonido ? 'Sonido on' : 'Sonido off'}</button>
                             <button onClick={handleCheck} className='boton-app'>Chequear</button>
                             <button onClick={generarMultiplicaciones} className='boton-app'>Generar otra</button>
