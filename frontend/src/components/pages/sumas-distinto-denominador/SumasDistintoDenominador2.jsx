@@ -97,7 +97,9 @@ const SumasDistintoDenominador2 = () => {
     return (
         <div>
             <div className='div-renderizador-operaciones'>
-                <Contador correcto={correcto} />
+            <div className="divContador">
+                        <Contador correcto={correcto} />
+                    </div>
                 {loading ? (
                     <div className='loading-container'><p>Cargando...</p></div>
                 ) : (

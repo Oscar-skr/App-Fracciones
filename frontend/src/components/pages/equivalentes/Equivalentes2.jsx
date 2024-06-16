@@ -94,7 +94,9 @@ const Equivalentes2 = () => {
 
     return (
         <div className='div-renderizador'>
-            <Contador correcto={correcto} />
+                  <div className="divContador">
+                        <Contador correcto={correcto} />
+                    </div>
             {loading ? (
                 <div className='loading-container'><p>Cargando...</p></div>
             ) : (
