@@ -7,5 +7,6 @@
 /* Efecto de hover para las fracciones */
 .graficoFraccion {
   transition: background-color 0.1s ease, border 0.1s ease, box-shadow 0.1s ease;
+  margin-bottom: 5px;
 }
 

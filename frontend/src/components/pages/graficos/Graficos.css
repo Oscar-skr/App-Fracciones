@@ -59,18 +59,17 @@
 }
 
 
-@media (max-width: 1110px) {
+@media (max-width: 650px) {
     .graficos-css {
         width: 100vw !important; /* Aumenta el ancho máximo del contenedor */
-        height: 90vh; /* Aumenta la altura mínima */
-        margin: 20px auto;
-        padding: 20px;
+        height: 85vh; /* Aumenta la altura mínima */
         background: white;
         box-shadow: none;
         align-items: center; /* Centrar verticalmente */
         display: flex;
         border: none;
         flex-direction: row;
+        margin-top: 0px;
 
     }
 
@@ -103,6 +102,10 @@
     .buttonleft:hover, .buttonright:hover {
         background-color: transparent;
         color: #007bff;
+    }
+
+    .contenedorComponente{
+        margin-top: 0px;
     }
 
 }

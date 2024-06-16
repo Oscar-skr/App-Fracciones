@@ -93,9 +93,9 @@ const Radicacion2 = () => {
                                 </div>
                                 <div className="radical-symbol">√</div>
                                 <div className="radicando">
-                                    <div className="fraccion">
+                                    <div className="fraccionRadicacion">
                                         <p>{fraccion.numerador}</p>
-                                        <p className="fraccion-span"></p>
+                                        <p className="fraccionRadicacion-span"></p>
                                         <p>{fraccion.denominador}</p>
                                     </div>
                                 </div>

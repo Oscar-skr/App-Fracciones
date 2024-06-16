@@ -35,7 +35,6 @@ const Graficos = () => {
         <div className='graficos-css'>
              <div className='divContenedorBotonIzquierdo'><button onClick={decrementarContador} className='buttonleft'>{"<"}</button></div>
              <div className='contenedorComponente'>
-                <span></span>
                 {mostrarComponente()}
             </div>
             <div className='divContenedorBotonDerecho'><button onClick={incrementarContador} className='buttonright'>{">"}</button></div>

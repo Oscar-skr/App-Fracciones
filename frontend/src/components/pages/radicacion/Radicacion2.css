@@ -6,6 +6,31 @@
     margin-bottom: 20px;
 }
 */
+.fraccionRadicacion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px; /* Tamaño de fuente mayor para mejor visibilidad */
+    color: #333; /* Color del texto */
+    margin: 10px 0; /* Espacio alrededor de la fracción */
+  }
+  
+  .fraccionRadicacion p {
+    margin: 0;
+    line-height: 1; /* Alineación más estrecha para los números */
+  }
+  
+  .fraccionRadicacion-span {
+    display: block;
+    width: 100%; /* Ocupa todo el ancho del contenedor */
+    height: 2px; /* Línea más gruesa para una mejor separación */
+    background-color: #333; /* Color de la línea */
+    margin: 5px 0; /* Espacio alrededor de la línea */
+    color: #333;
+  }
+  
+
 .radical-container {
     display: flex;
     align-items: center;
@@ -30,11 +55,43 @@
     display: flex;
     align-items: center;
     margin-right: 0px;
+    margin-top: 0px;
 }
-
+/**/
 .radicando {
     display: flex;
     flex-direction: column;
     align-items: center;
     border-top: solid black 2px;
+    margin-bottom: 0px;
+}
+
+@media (max-width: 650px){
+    .radical-symbol {
+        font-size: 60px;
+        display: flex;
+        align-items: center;
+        margin-right: 0px;
+        margin-top: 0px;
+        margin-bottom: 12px;
+    }
+    /**/
+    .radicando {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-top: solid black 5px;
+        margin-bottom: 0px;
+    }
+
+    .fraccionRadicacion {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px; /* Tamaño de fuente mayor para mejor visibilidad */
+        color: #333; /* Color del texto */
+        margin: 10px 0; /* Espacio alrededor de la fracción */
+      }
+
 }
