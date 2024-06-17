@@ -3,7 +3,7 @@ import { useMediaQuery } from 'react-responsive';
 import PotenciacionDefault from '../../../assets/PotenciacionDefault.svg';
 import PotenciacionMobile1 from '../../../assets/PotenciacionMobile1.svg';
 import PotenciacionMobile2 from '../../../assets/PotenciacionMobile2.svg';
-//import './Potenciacion1.css';
+import './Potenciacion1.css';
 
 const Potenciacion1 = () => {
     const isMobile = useMediaQuery({ query: '(max-width: 650px)' });

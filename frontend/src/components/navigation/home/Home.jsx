@@ -1,19 +1,21 @@
 import './Home.css';
-import Circle from '../../../assets/Circle.png';
+import { useEffect } from 'react';
 
 const Home = () => {
+    useEffect(() => {
+        // Ocultar el desplazamiento vertical
+        document.body.style.overflowY = 'hidden';
+        return () => {
+            // Restaurar el desplazamiento vertical cuando el componente se desmonta
+            document.body.style.overflowY = 'auto';
+        };
+    }, []);
+
     return (
         <div className="home-container">
-            <div className="circle-container">
-                <img src={Circle} alt="Bienvenidos a Mundo Fracciones" className="circle-image" />
-                <div className="text-container">
-                    <h1 className="text-bienvenidos">Bienvenidos a</h1>
-                    <h2 className="text-mundo">Mundo</h2>
-                    <h2 className="text-fracciones">Fracciones</h2>
-                </div>
-            </div>
+            <h3 className="text-center">Nada por aquí...</h3>
         </div>
-    )
-}
+    );
+};
 
 export default Home;
