@@ -3,7 +3,7 @@ import { useMediaQuery } from 'react-responsive';
 import DivisionDefault from '../../../assets/DivisionDefault.svg';
 import DivisionMobile1 from '../../../assets/DivisionesMobile1.svg';
 import DivisionMobile2 from '../../../assets/DivisionesMobile2.svg';
-//import './Division1.css';
+import './Division1.css';
 
 const Division1 = () => {
     const isMobile = useMediaQuery({ query: '(max-width: 650px)' });

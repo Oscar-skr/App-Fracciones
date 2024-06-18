@@ -4,7 +4,7 @@ import './Header.css';
 const Header = () => {
   return (
     <header className="header">
-      <h1>Mundo Fracciones</h1>
+      <h1>Academia de Fracciones</h1>
       <nav>
         <ul>
           <li><a href="#tab1">Pestaña 1</a></li>

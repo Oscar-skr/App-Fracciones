@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Multiplicacion1 from "./Multiplicacion1";
 import Multiplicacion2 from "./Multiplicacion2";
-//import './Multiplicacion.css';
+import './Multiplicacion.css';
 
 
 const Multiplicacion = () => {
