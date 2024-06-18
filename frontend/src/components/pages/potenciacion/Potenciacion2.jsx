@@ -78,12 +78,29 @@ const Potenciacion2 = () => {
         setInputDenominador('');
     };
 
+    const handleOnChange = (e) => {
+        const { name, value } = e.target;
+        if (/^\d*$/.test(value)) { // Solo permitir números naturales
+            if (name === 'inputNumeradorName') {
+                setInputNumerador(value);
+            } else if (name === 'inputDenominadorName') {
+                setInputDenominador(value);
+            }
+        } else {
+            if (name === 'inputNumeradorName') {
+                setInputNumerador('');
+            } else if (name === 'inputDenominadorName') {
+                setInputDenominador('');
+            }
+        }
+    };
+
     return (
         <div>
             <div className='div-renderizador-operaciones'>
-            <div className="divContador">
-                        <Contador correcto={correcto} />
-                    </div>
+                <div className="divContador">
+                    <Contador correcto={correcto} />
+                </div>
                 {loading ? (
                     <div className='loading-container'><p>Cargando...</p></div>
                 ) : (
@@ -124,7 +141,7 @@ const Potenciacion2 = () => {
                                             className='inputFraccion' 
                                             autoComplete="off" 
                                             value={inputNumerador}
-                                            onChange={(e) => setInputNumerador(e.target.value)}
+                                            onChange={handleOnChange}
                                             placeholder="Numerador"
                                         />
                                         <span className="fraccion-span"></span>
@@ -134,7 +151,7 @@ const Potenciacion2 = () => {
                                             name="inputDenominadorName" 
                                             autoComplete="off" 
                                             value={inputDenominador}
-                                            onChange={(e) => setInputDenominador(e.target.value)}
+                                            onChange={handleOnChange}
                                             placeholder="Denominador"
                                         />
                                     </div>

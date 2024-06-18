@@ -8,7 +8,6 @@ import { aumentarContador, decrementarContador } from '../../../redux/actions/co
 import Contador from '../contador/Contador';
 import './Multiplicacion2.css';
 
-
 const Multiplicacion2 = () => {
     const [playSoundOk] = useSound(audioOk);
     const [playSoundWrong] = useSound(audioWrong);
@@ -124,12 +123,29 @@ const Multiplicacion2 = () => {
         }
     };
 
+    const handleOnChange = (e) => {
+        const { name, value } = e.target;
+        if (/^\d*$/.test(value)) { // Solo permitir números naturales
+            if (name === 'inputNumeradorName') {
+                setInputNumerador(value);
+            } else if (name === 'inputDenominadorName') {
+                setInputDenominador(value);
+            }
+        } else {
+            if (name === 'inputNumeradorName') {
+                setInputNumerador('');
+            } else if (name === 'inputDenominadorName') {
+                setInputDenominador('');
+            }
+        }
+    };
+
     return (
         <div>
             <div className='div-renderizador-operaciones'>
-            <div className="divContador">
-                        <Contador correcto={correcto} />
-                    </div>
+                <div className="divContador">
+                    <Contador correcto={correcto} />
+                </div>
                 {loading ? (
                     <div className='loading-container'><p>Cargando...</p></div>
                 ) : (
@@ -178,7 +194,7 @@ const Multiplicacion2 = () => {
                                             className='inputFraccion' 
                                             autoComplete="off" 
                                             value={inputNumerador}
-                                            onChange={(e) => setInputNumerador(e.target.value)}
+                                            onChange={handleOnChange}
                                             placeholder="Numerador"
                                         />
                                         <span className="fraccion-span"></span>
@@ -188,7 +204,7 @@ const Multiplicacion2 = () => {
                                             name="inputDenominadorName" 
                                             autoComplete="off" 
                                             value={inputDenominador}
-                                            onChange={(e) => setInputDenominador(e.target.value)}
+                                            onChange={handleOnChange}
                                             placeholder="Denominador"
                                         />
                                     </div>

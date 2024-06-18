@@ -77,18 +77,26 @@ const SumasIgualDenominador2 = () => {
 
     const handleOnChange = (e) => {
         const { name, value } = e.target;
-        if (name === 'inputNumeradorName') {
-            setInputNumerador(value);
-        } else if (name === 'inputDenominadorName') {
-            setInputDenominador(value);
+        if (/^\d*$/.test(value)) { // Solo permitir números naturales
+            if (name === 'inputNumeradorName') {
+                setInputNumerador(value);
+            } else if (name === 'inputDenominadorName') {
+                setInputDenominador(value);
+            }
+        } else {
+            if (name === 'inputNumeradorName') {
+                setInputNumerador('');
+            } else if (name === 'inputDenominadorName') {
+                setInputDenominador('');
+            }
         }
     };
 
     return (
         <div className='div-renderizador-operaciones'>
-                  <div className="divContador">
-                        <Contador correcto={correcto} />
-                    </div>
+            <div className="divContador">
+                <Contador correcto={correcto} />
+            </div>
             {loading ? (
                 <div className='loading-container'><p>Cargando...</p></div>
             ) : (

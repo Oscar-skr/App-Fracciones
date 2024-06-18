@@ -60,21 +60,26 @@ const Graficos1 = () => {
 
   const handleOnChange = (event) => {
     const { name, value } = event.target;
-    if (name === "inputNumeradorName") setInputNumerador(value);
-    else if (name === "inputDenominadorName") setInputDenominador(value);
+    if (/^\d*$/.test(value)) { // Solo permitir números naturales
+      if (name === "inputNumeradorName") setInputNumerador(value);
+      else if (name === "inputDenominadorName") setInputDenominador(value);
+    } else {
+      if (name === "inputNumeradorName") setInputNumerador("");
+      else if (name === "inputDenominadorName") setInputDenominador("");
+    }
   }
 
   const chequearDatos = () => {
     if (parseInt(inputNumerador) === numerador && parseInt(inputDenominador) === denominador) {
       if (sonido) playSoundOk();
-      dispatch(aumentarContador())
+      dispatch(aumentarContador());
       setCorrecto(true); // Actualizar el estado de correcto
       setInputNumerador("");
       setInputDenominador("");
       generarNumerosFraccion();
     } else {
       if (sonido) playSoundWrong();
-      dispatch(decrementarContador())
+      dispatch(decrementarContador());
       setCorrecto(false); // Actualizar el estado de incorrecto
       setInputNumerador("");
       setInputDenominador("");
